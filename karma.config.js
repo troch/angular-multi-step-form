@@ -24,12 +24,13 @@ module.exports = function (config) {
       'karma-chrome-launcher',
       'karma-firefox-launcher',
       'karma-ng-html2js-preprocessor',
-      'karma-coverage'
+      'karma-coverage',
+      'karma-coveralls'
     ],
     /**
      * How to report, by default.
      */
-    reporters: ['progress', 'coverage'],
+    reporters: ['progress', 'coverage', 'coveralls'],
 
     coverageReporter: {
         dir: 'coverage',

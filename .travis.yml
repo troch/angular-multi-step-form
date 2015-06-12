@@ -9,4 +9,3 @@ before_script:
 script:
   - npm run build
   - npm test
-after_script: "cat ./coverage/Firefox*/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
