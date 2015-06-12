@@ -3,6 +3,11 @@
 The `multiStepForm` module allows one to easily create a multi step form
 based on a sequence of "views".
 
+## Requirements
+
+    - ngAnimate (angular-animate)
+    - IE9+
+
 ## Starting a multi step form
 
 A multi step form is started by invoking the multiStepContainer directive as follow:
