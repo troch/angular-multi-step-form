@@ -119,7 +119,7 @@ describe('multiStepContainer directive:', function() {
         scope.$digest();
         element = compileDirective({searchId: "'multi1'"});
         expect(element.children().eq(1).html()).toContain('Step 2');
-        expect($location.search().multi1).toEqual(1);
+        expect($location.search().multi1).toEqual(2);
     });
 
     it('should force the initial step to be the one provided to the directive', function () {
