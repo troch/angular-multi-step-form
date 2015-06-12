@@ -12,7 +12,7 @@ describe('multiStepContainer directive:', function() {
                 '<input type="text" ng-model="model" required />' +
             '</form>';
 
-    beforeEach(inject(function(_$compile_, _$rootScope_, _$location_) {
+    beforeEach(inject(function(_$compile_, _$rootScope_, _$location_, $templateCache) {
         $compile = _$compile_;
         $rootScope = _$rootScope_;
         $location = _$location_;
@@ -25,10 +25,12 @@ describe('multiStepContainer directive:', function() {
             },
             {
                 title: 'Step 2',
-                template: template2,
+                templateUrl: 'tpl/template2.html',
                 hasForm: true
             }
         ];
+
+        $templateCache.put('tpl/template2.html', template2);
     }));
 
     function compileDirective(config) {
