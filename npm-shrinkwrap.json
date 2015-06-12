@@ -1,0 +1,13 @@
+{
+  "name": "angular-multi-step-form",
+  "version": "1.0.0",
+  "dependencies": {
+    "gulp": {
+      "dependencies": {
+        "vinyl-fs": {"version": "git+https://github.com/wearefractal/vinyl-fs"},
+        "gulp-cli": {"version": "git+https://github.com/gulpjs/gulp-cli#4.0"},
+        "undertaker": {"version": "0.7.0"}
+      }
+    }
+  }
+}

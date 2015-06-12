@@ -1,0 +1,36 @@
+{
+  "name": "angular-multi-step-form",
+  "version": "1.0.0",
+  "description": "An Angular module for creating wizzards and multi step forms",
+  "scripts": {
+    "test": "node_modules/.bin/gulp karma"
+  },
+  "devDependencies": {
+    "karma": "~0.12.0",
+    "karma-coverage": "~0.3.1",
+    "karma-jasmine": "~0.3.0",
+    "karma-chrome-launcher": "^0.1.12",
+    "gulp": "git+https://github.com/gulpjs/gulp#4.0",
+    "gulp-concat": "^2.5.2",
+    "gulp-header": "^1.2.2",
+    "gulp-htmlhint": "^0.1.1",
+    "gulp-jshint": "^1.9.4",
+    "gulp-footer": "^1.0.5",
+    "gulp-uglify": "^1.2.0",
+    "gulp-rename": "^1.2.2",
+    "merge2": "^0.3.5",
+    "gulp-minify-html": "^1.0.3",
+    "gulp-ng-html2js": "^0.2.0",
+    "karma-ng-html2js-preprocessor": "^0.1.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/troch/angular-multi-step-form.git"
+  },
+  "author": "Thomas Roch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/troch/angular-multi-step-form/issues"
+  },
+  "homepage": "https://github.com/troch/angular-multi-step-form"
+}
