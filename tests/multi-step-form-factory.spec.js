@@ -1,12 +1,14 @@
 describe('multiStepForm factory:', function () {
     var $rootScope,
+        FormStep,
         steps,
         multiStepForm;
 
     beforeEach(module('multiStepForm'));
 
-    beforeEach(inject(function(_$rootScope_, _multiStepForm_, FormStep) {
+    beforeEach(inject(function(_$rootScope_, _multiStepForm_, _FormStep_) {
         $rootScope = _$rootScope_;
+        FormStep = _FormStep_;
         // Multi step form factory (function)
         multiStepForm = _multiStepForm_;
         // Create steps using FormStep factory
@@ -25,6 +27,12 @@ describe('multiStepForm factory:', function () {
     // Check a new instance is generated each time it is requested //
     /////////////////////////////////////////////////////////////////
     describe('each instance', function () {
+        it('should throw an error if no template is specified', function () {
+            expect(function() {
+                new FormStep({title: 'Step 1'})
+            }).toThrow();
+        });
+
         it('should be unique', function () {
             expect(multiStepForm()).not.toBe(multiStepForm());
         });

@@ -26,6 +26,18 @@ describe('multiStepContainer directive:', function() {
             {
                 title: 'Step 2',
                 templateUrl: 'tpl/template2.html',
+                resolve: {
+                    data: [function () {
+                        return 'data'
+                    }]
+                },
+                locals: {
+                    local: 123
+                },
+                controller: ['$scope', 'data', 'local', function ($scope, data, local) {
+                    $scope.data = data;
+                    $scope.local = local;
+                }],
                 hasForm: true
             }
         ];
@@ -101,10 +113,19 @@ describe('multiStepContainer directive:', function() {
         expect(element.children().eq(1).html()).toContain('Step 2');
     });
 
+    it('should start with the step provided in URL if no intialStep defined', function () {
+        $location.search('multi1', 2);
+        $rootScope.$emit('$locationChangeSuccess');
+        scope.$digest();
+        element = compileDirective({searchId: "'multi1'"});
+        expect(element.children().eq(1).html()).toContain('Step 2');
+        expect($location.search().multi1).toEqual(1);
+    });
+
     it('should force the initial step to be the one provided to the directive', function () {
         $location.search('multi1', 2);
         element = compileDirective({searchId: "'multi1'", initialStep: 1});
-        expect(element.children().eq(1).html()).toContain(template1);
+        expect(element.children().eq(1).html()).toContain('Step 1');
         expect($location.search().multi1).toEqual(1);
     });
 
@@ -120,6 +141,12 @@ describe('multiStepContainer directive:', function() {
         element.scope().$finish();
         scope.$digest();
         expect(element.scope()).toBeUndefined();
+    });
+
+    it('should have resolved and locals injected in controller', function () {
+        element = compileDirective({initialStep: 2});
+        expect(element.scope().$$childTail.data).toEqual('data');
+        expect(element.scope().$$childTail.local).toEqual(123);
     });
 
     it('should inform the main directive of a step validity if a form is present', function () {
