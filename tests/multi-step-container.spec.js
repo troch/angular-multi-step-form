@@ -7,7 +7,10 @@ describe('multiStepContainer directive:', function() {
         scope;
 
     var template1 = '<h1>Step 1</h1>',
-        template2 = '<h1>Step 2</h1>';
+        template2 = '<h1>Step 2</h1>' +
+            '<form name="MyForm" form-step-validity>' +
+                '<input type="text" ng-model="model" required />' +
+            '</form>';
 
     beforeEach(inject(function(_$compile_, _$rootScope_, _$location_) {
         $compile = _$compile_;
@@ -22,7 +25,8 @@ describe('multiStepContainer directive:', function() {
             },
             {
                 title: 'Step 2',
-                template: template2
+                template: template2,
+                hasForm: true
             }
         ];
     }));
@@ -53,12 +57,12 @@ describe('multiStepContainer directive:', function() {
 
     it('should start on the first step by default', function () {
         element = compileDirective();
-        expect(element.children().eq(1).html()).toContain(template1);
+        expect(element.children().eq(1).html()).toContain('Step 1');
     });
 
     it('should start on the specified initial step if provided', function () {
         element = compileDirective({initialStep: 2});
-        expect(element.children().eq(1).html()).toContain(template2);
+        expect(element.children().eq(1).html()).toContain('Step 2');
     });
 
     it('should have its content transcluded into its header', function() {
@@ -71,15 +75,15 @@ describe('multiStepContainer directive:', function() {
         // Go to next
         element.scope().$nextStep();
         scope.$digest();
-        expect(element.children().eq(1).html()).toContain(template2);
+        expect(element.children().eq(1).html()).toContain('Step 2');
         // Go to previous
         element.scope().$previousStep();
         scope.$digest();
-        expect(element.children().eq(1).html()).toContain(template1);
+        expect(element.children().eq(1).html()).toContain('Step 1');
         // Go to a specific step
         element.scope().$setActiveIndex(2);
         scope.$digest();
-        expect(element.children().eq(1).html()).toContain(template2);
+        expect(element.children().eq(1).html()).toContain('Step 2');
     });
 
     it('should update the location if a search ID is provided', function () {
@@ -92,7 +96,7 @@ describe('multiStepContainer directive:', function() {
         $location.search('multi1', 2);
         $rootScope.$emit('$locationChangeSuccess');
         scope.$digest();
-        expect(element.children().eq(1).html()).toContain(template2);
+        expect(element.children().eq(1).html()).toContain('Step 2');
     });
 
     it('should force the initial step to be the one provided to the directive', function () {
@@ -114,5 +118,18 @@ describe('multiStepContainer directive:', function() {
         element.scope().$finish();
         scope.$digest();
         expect(element.scope()).toBeUndefined();
+    });
+
+    it('should inform the main directive of a step validity if a form is present', function () {
+        element = compileDirective();
+        // Go to next
+        element.scope().$nextStep();
+        scope.$digest();
+        // Step should be invalid
+        expect(element.scope().$getActiveStep().valid).toBe(false);
+        // Change model value to make form valid
+        element.scope().model = 'aaa';
+        scope.$digest();
+        expect(element.scope().$getActiveStep().valid).toBe(true);
     });
 });

@@ -67,6 +67,16 @@ angular.module('multiStepForm')
 
             /**
              * @ngdoc       property
+             * @propertyOf  multiStepForm:resolve
+             *
+             * @description The form step locals map (same than resolve but for non deferred values)
+             *              Note: resolve also works with non deferred values
+             * @type {Object}
+             */
+            this.locals = config.locals || {};
+
+            /**
+             * @ngdoc       property
              * @propertyOf  multiStepForm:FormStep
              *
              * @description Whether or not this form step contains a form

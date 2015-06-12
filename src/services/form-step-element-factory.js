@@ -73,6 +73,7 @@ angular.module('multiStepForm')
             // Get template
             promisesHash.$template = resolveTemplate(formStep);
 
+
             // Get resolve
             angular.forEach(formStep.resolve, function (resolveVal, resolveName) {
                 promisesHash[resolveName] =
@@ -84,6 +85,8 @@ angular.module('multiStepForm')
             // After all locals are resolved (template and "resolves") //
             return $q.all(promisesHash)
                 .then(function (locals) {
+                    // Extend formStep locals with resolved locals
+                    locals = angular.extend({}, formStep.locals, locals);
                     // Load template inside element
                     locals.$template = locals.$template.data || locals.$template;
                     formStepElement.html(locals.$template);

@@ -342,6 +342,7 @@ angular.module('multiStepForm')
             // Get template
             promisesHash.$template = resolveTemplate(formStep);
 
+
             // Get resolve
             angular.forEach(formStep.resolve, function (resolveVal, resolveName) {
                 promisesHash[resolveName] =
@@ -353,6 +354,8 @@ angular.module('multiStepForm')
             // After all locals are resolved (template and "resolves") //
             return $q.all(promisesHash)
                 .then(function (locals) {
+                    // Extend formStep locals with resolved locals
+                    locals = angular.extend({}, formStep.locals, locals);
                     // Load template inside element
                     locals.$template = locals.$template.data || locals.$template;
                     formStepElement.html(locals.$template);
@@ -453,6 +456,16 @@ angular.module('multiStepForm')
              * @type {Object}
              */
             this.resolve = config.resolve || {};
+
+            /**
+             * @ngdoc       property
+             * @propertyOf  multiStepForm:resolve
+             *
+             * @description The form step locals map (same than resolve but for non deferred values)
+             *              Note: resolve also works with non deferred values
+             * @type {Object}
+             */
+            this.locals = config.locals || {};
 
             /**
              * @ngdoc       property

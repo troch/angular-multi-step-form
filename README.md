@@ -29,6 +29,7 @@ in the same way routes or states are defined in an AngularJS application:
 * `controller` (optional)
 * `template` or `templateUrl` property (required)
 * `resolve`
+* `locals`
 * `title`
 * `hasForm`: whether or not a step contains a form. For example, a confirm or review
   step might not contain a form.
