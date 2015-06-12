@@ -22,7 +22,8 @@
     "gulp-minify-html": "^1.0.3",
     "gulp-ng-html2js": "^0.2.0",
     "karma-ng-html2js-preprocessor": "^0.1.2",
-    "karma-firefox-launcher": "^0.1.6"
+    "karma-firefox-launcher": "^0.1.6",
+    "coveralls": "^2.11.2"
   },
   "repository": {
     "type": "git",
