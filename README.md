@@ -8,8 +8,8 @@ create your views with ngRoute or ui-router!
 
 ## Requirements
 
-    - ngAnimate (angular-animate)
-    - IE9+
+- IE9+
+- Angular (tested with 1.3, should work with 1.2)
 
 ## Starting a multi step form
 

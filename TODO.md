@@ -1,7 +1,7 @@
-- Take care of package.json
+- Take care of package.json, npm and possibly jspm
 - Site with examples
-- Improve README
-- Add controllerAs property for formSteps
-- Remove ngAnimate as hard dependency
+- Improve README and split in docs
+- Add option to choose whether to have a header or a footer
+- Add controllerAs property for form steps
 - Test earlier versions of Angular, set bower deps accordingly
 - Changelog
