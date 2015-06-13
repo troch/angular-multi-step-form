@@ -1,0 +1,7 @@
+- Take care of package.json
+- Site with examples
+- Improve README
+- Add controllerAs property for formSteps
+- Remove ngAnimate as hard dependency
+- Test earlier versions of Angular, set bower deps accordingly
+- Changelog

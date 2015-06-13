@@ -1,10 +1,10 @@
 [![Build Status](https://travis-ci.org/troch/angular-multi-step-form.svg?branch=master)](https://travis-ci.org/troch/angular-multi-step-form)
 [![Coverage Status](https://coveralls.io/repos/troch/angular-multi-step-form/badge.svg?branch=master)](https://coveralls.io/r/troch/angular-multi-step-form?branch=master)
 
-# Multi step form
+# Angular Multi step form
 
-The `multiStepForm` module allows one to easily create a multi step form
-based on a sequence of "views".
+`multiStepForm` is an angular module to create multi step forms and wizzards. Create your steps like your would
+create your views with ngRoute or ui-router!
 
 ## Requirements
 
@@ -17,9 +17,8 @@ A multi step form is started by invoking the multiStepContainer directive as fol
 
     <multi-step-container steps="yourSteps" initial-step="1">
 
-Steps have to be supplied, and an initial step can be defined. By default, the initial
-step is 1 (the first step). Specifying a custom initial step can for example be used to
-resume a wizzard with prepopulated data.
+Steps have to be supplied to the `multiStepContainer` directive. An initial step can be supplied (1 by default).
+Specifying a custom initial step can be used to resume a wizzard with prepopulated data.
 
 ## Defining steps
 
@@ -29,7 +28,7 @@ in the same way routes or states are defined in an AngularJS application:
 * `controller` (optional)
 * `template` or `templateUrl` property (required)
 * `resolve`
-* `locals`
+* `locals` (like resolve but a more simple map of key-value pairs)
 * `title`
 * `hasForm`: whether or not a step contains a form. For example, a confirm or review
   step might not contain a form.
@@ -62,7 +61,7 @@ in the same way routes or states are defined in an AngularJS application:
         ]
     };
 
-### Additional step controllers dependencies
+### Additional step controller dependencies
 
 The `formStepElement` factory is responsible for creating step elements, instanciating their controllers
 and compiling their contents. When a controller is instanciated, two extra dependencies are available

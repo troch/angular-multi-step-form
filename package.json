@@ -1,6 +1,6 @@
 {
   "name": "angular-multi-step-form",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An Angular module for creating wizzards and multi step forms",
   "scripts": {
     "build": "./node_modules/.bin/gulp build",
