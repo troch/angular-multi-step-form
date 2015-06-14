@@ -10,7 +10,7 @@ The `multiStepContainer` directive scope (the top directive to use) and step sco
 - `$getActiveStep()`: return the active step object
 - `$nextStep()`: go to the next step
 - `$previousStep()`: return to the previous step
-- `$setActiveIndex(): navigate to a specific step
+- `$setActiveIndex()`: navigate to a specific step
 - `$setValidity(validity, stepIndex)`: set validity of the specified step (current step if no given step)
 
 ## Isolated step scope
