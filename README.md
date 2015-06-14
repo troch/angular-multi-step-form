@@ -32,28 +32,36 @@ It is lightweight (6kb minified) but extremely versatile and powerful.
 
 Grab the sources with bower or download from Github: [https://github.com/troch/angular-multi-step-form/tree/master/dist](./dist):
 
-    $ bower install --save-dev angular-multi-step-form
+```sh
+$ bower install --save-dev angular-multi-step-form
+```
 
 Include the `multiStepForm` module in your app:
 
-    angular.module('yourApp', [
-        'multiStepForm'
-    ]);
+```javascript
+angular.module('yourApp', [
+    'multiStepForm'
+]);
+```
 
 You can then configure your steps
 
-    $scope.steps = [
-        {
-            template: 'Hello <button class="btn btn-default" ng-click="$nextStep()">Next</button>'
-        },
-        {
-            template: 'World <button class="btn btn-default" ng-click="$previousStep()">Previous</button>'
-        }
-    ];
+```javascript
+$scope.steps = [
+    {
+        template: 'Hello <button class="btn btn-default" ng-click="$nextStep()">Next</button>'
+    },
+    {
+        template: 'World <button class="btn btn-default" ng-click="$previousStep()">Previous</button>'
+    }
+];
+```
 
 And start your multiple step form / wizard:
 
-    <multi-step-container steps="yourSteps">
+```html
+<multi-step-container steps="yourSteps">
+```
 
 
 ## Examples
@@ -66,5 +74,5 @@ And start your multiple step form / wizard:
 
 - [Configuring steps](./docs/configuring-steps.md)
 - [Header content](./docs/header-content.md)
-- [Animations, navigation, callbacks](../docs/navigation.md)
+- [Animations, navigation, callbacks](../docs/steps-lifecycle.md)
 - [Advanced guide](./docs/advanced-guide.md)
