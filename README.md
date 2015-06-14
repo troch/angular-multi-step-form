@@ -3,7 +3,7 @@
 
 # Angular Multi step form
 
-`multiStepForm` is an angular module to create multi step forms and wizzards. Create your steps like your would
+`multiStepForm` is an angular module to create multi step forms and wizards. Create your steps like your would
 create your views with ngRoute or ui-router!
 
 ## Requirements
@@ -18,7 +18,7 @@ A multi step form is started by invoking the multiStepContainer directive as fol
     <multi-step-container steps="yourSteps" initial-step="1">
 
 Steps have to be supplied to the `multiStepContainer` directive. An initial step can be supplied (1 by default).
-Specifying a custom initial step can be used to resume a wizzard with prepopulated data.
+Specifying a custom initial step can be used to resume a wizard with prepopulated data.
 
 ## Defining steps
 

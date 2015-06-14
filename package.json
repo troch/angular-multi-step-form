@@ -1,7 +1,7 @@
 {
   "name": "angular-multi-step-form",
   "version": "1.0.1",
-  "description": "An Angular module for creating wizzards and multi step forms",
+  "description": "An Angular module for creating wizards and multi step forms",
   "scripts": {
     "build": "./node_modules/.bin/gulp build",
     "test": "./node_modules/.bin/karma start karma.config.js --single-run --browsers Firefox"
