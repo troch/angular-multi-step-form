@@ -21,7 +21,9 @@ angular.module('multiStepForm')
     function ($animate, $parse, $q, multiStepForm, FormStep, formStepElement) {
         return {
             restrict: 'EA',
-            templateUrl: 'multi-step-form/partials/multi-step-container.html',
+            templateUrl: function(elem, attr) {
+                return 'multi-step-form/partials/multi-step-container-with-' + (angular.isDefined(attr.useFooter) ? 'footer' : 'header') + '.html';
+            },
             scope: true,
             replace: true,
             transclude: true,
@@ -56,11 +58,11 @@ angular.module('multiStepForm')
                      *
                      * @description Register the multi step header element. This method
                      *              is invoked in the post link function of directive
-                     *              {@link multiStepForm:multiStepHeader multiStepHeader}
+                     *              {@link multiStepForm:multiStepControlElement multiStepControlElement}
                      * @param {JQLite} elm The multi step header
                      */
-                    this.setMultiStepHeader = function (elm) {
-                        this.multiStepHeader = elm;
+                    this.setMultiStepControlElement = function (elm) {
+                        this.multiStepControlElement = elm;
                     };
                 }
             ],
@@ -160,8 +162,8 @@ angular.module('multiStepForm')
                     // Handle transclusion manually to avoid
                     // creation of a sibling scope
                     $transclude(scope, function(clone) {
-                        controller.multiStepHeader.empty();
-                        controller.multiStepHeader.append(clone);
+                        controller.multiStepControlElement.empty();
+                        controller.multiStepControlElement.append(clone);
                     });
                 }
             }

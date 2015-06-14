@@ -27,6 +27,15 @@ angular.module('multiStepForm')
              * @ngdoc       property
              * @propertyOf  multiStepForm:FormStep
              *
+             * @description The form step additional data
+             * @type {Object}
+             */
+            this.data = config.data | {};
+
+            /**
+             * @ngdoc       property
+             * @propertyOf  multiStepForm:FormStep
+             *
              * @description The form step controller
              * @type {String|Function|Array}
              */

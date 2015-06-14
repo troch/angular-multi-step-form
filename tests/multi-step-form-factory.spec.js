@@ -13,7 +13,7 @@ describe('multiStepForm factory:', function () {
         multiStepForm = _multiStepForm_;
         // Create steps using FormStep factory
         steps = [
-            {title: 'Step 1', template: 'Step 1'},
+            {title: 'Step 1', template: 'Step 1', data: {first: true}},
             {title: 'Step 2', template: 'Step 2'},
             {title: 'Step 3', template: 'Step 3'},
             {title: 'Step 4', template: 'Step 4'},

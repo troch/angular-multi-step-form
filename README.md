@@ -25,6 +25,7 @@ It is lightweight (6kb minified) but extremely versatile and powerful.
 - `onCancel` and `onFinish` callbacks
 - Browser navigation with search URL parameter
 - You decide what level of control you expose to the user: next, previous, jump to state, finish, cancel, etc...
+- Place summary, controls, etc... in header or footer
 - Support for multiple components per view
 
 
@@ -37,7 +38,7 @@ It is lightweight (6kb minified) but extremely versatile and powerful.
 ## Docs
 
 - [Configuring steps](./docs/configuring-steps.md)
-- [Header content](./docs/header-content.md)
+- [Header or footer content](./docs/header-or-footer-content.md)
 - [Animations, navigation, callbacks](./docs/steps-lifecycle.md)
 - [Advanced guide](./docs/advanced-guide.md)
 

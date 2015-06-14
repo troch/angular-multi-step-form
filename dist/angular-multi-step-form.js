@@ -94,7 +94,9 @@ angular.module('multiStepForm')
     function ($animate, $parse, $q, multiStepForm, FormStep, formStepElement) {
         return {
             restrict: 'EA',
-            templateUrl: 'multi-step-form/partials/multi-step-container.html',
+            templateUrl: function(elem, attr) {
+                return 'multi-step-form/partials/multi-step-container-with-' + (angular.isDefined(attr.useFooter) ? 'footer' : 'header') + '.html';
+            },
             scope: true,
             replace: true,
             transclude: true,
@@ -129,11 +131,11 @@ angular.module('multiStepForm')
                      *
                      * @description Register the multi step header element. This method
                      *              is invoked in the post link function of directive
-                     *              {@link multiStepForm:multiStepHeader multiStepHeader}
+                     *              {@link multiStepForm:multiStepControlElement multiStepControlElement}
                      * @param {JQLite} elm The multi step header
                      */
-                    this.setMultiStepHeader = function (elm) {
-                        this.multiStepHeader = elm;
+                    this.setMultiStepControlElement = function (elm) {
+                        this.multiStepControlElement = elm;
                     };
                 }
             ],
@@ -233,8 +235,8 @@ angular.module('multiStepForm')
                     // Handle transclusion manually to avoid
                     // creation of a sibling scope
                     $transclude(scope, function(clone) {
-                        controller.multiStepHeader.empty();
-                        controller.multiStepHeader.append(clone);
+                        controller.multiStepControlElement.empty();
+                        controller.multiStepControlElement.append(clone);
                     });
                 }
             }
@@ -246,7 +248,7 @@ angular.module('multiStepForm')
 angular.module('multiStepForm')
 /**
  * @ngdoc    directive
- * @name     multiStepForm:multiStepHeader
+ * @name     multiStepForm:multiStepControlElement
  *
  * @requires multiStepForm:multiStepContainer
  *
@@ -254,14 +256,14 @@ angular.module('multiStepForm')
  * @description The header for form steps. It registers itself with the multi step container.
  *              {@link multiStepForm:multiStepContainer multiStepContainer}
  */
-.directive('multiStepHeader', [
+.directive('multiStepControlElement', [
     function () {
         return {
             restrict: 'A',
             require: '^^multiStepContainer',
             scope: false,
             link: function postLink(scope, element, attrs, multiStepCtrl) {
-                multiStepCtrl.setMultiStepHeader(element);
+                multiStepCtrl.setMultiStepControlElement(element);
             }
         };
     }
@@ -414,6 +416,15 @@ angular.module('multiStepForm')
              * @type {String}
              */
             this.title = config.title;
+
+            /**
+             * @ngdoc       property
+             * @propertyOf  multiStepForm:FormStep
+             *
+             * @description The form step additional data
+             * @type {Object}
+             */
+            this.data = config.data | {};
 
             /**
              * @ngdoc       property
@@ -760,8 +771,20 @@ try {
   module = angular.module('multiStepForm.templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('multi-step-form/partials/multi-step-container.html',
-    '<section class=multi-step-container><header class=multi-step-header multi-step-header></header><article class=multi-step-body form-step-container></article></section>');
+  $templateCache.put('multi-step-form/partials/multi-step-container-with-footer.html',
+    '<section class=multi-step-container><article class=multi-step-body form-step-container></article><footer class=multi-step-footer multi-step-control-element></footer></section>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('multiStepForm.templates');
+} catch (e) {
+  module = angular.module('multiStepForm.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('multi-step-form/partials/multi-step-container-with-header.html',
+    '<section class=multi-step-container><header class=multi-step-header multi-step-control-element></header><article class=multi-step-body form-step-container></article></section>');
 }]);
 })();
 

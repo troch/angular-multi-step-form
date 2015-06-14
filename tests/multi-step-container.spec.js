@@ -4,6 +4,7 @@ describe('multiStepContainer directive:', function() {
     var $rootScope,
         $compile,
         $location,
+        $q,
         scope;
 
     var template1 = '<h1>Step 1</h1>',
@@ -12,10 +13,11 @@ describe('multiStepContainer directive:', function() {
                 '<input type="text" ng-model="model" required />' +
             '</form>';
 
-    beforeEach(inject(function(_$compile_, _$rootScope_, _$location_, $templateCache) {
+    beforeEach(inject(function(_$compile_, _$rootScope_, _$location_, $templateCache, _$q_) {
         $compile = _$compile_;
         $rootScope = _$rootScope_;
         $location = _$location_;
+        $q = _$q_;
 
         scope = $rootScope.$new();
         scope.steps = [
@@ -160,5 +162,23 @@ describe('multiStepContainer directive:', function() {
         element.scope().model = 'aaa';
         scope.$digest();
         expect(element.scope().$getActiveStep().valid).toBe(true);
+    });
+
+    it('should throw an error if a step cannot be loaded', function () {
+        scope.steps = [
+            {
+                title: 'Step 1',
+                template: 'Step 1',
+                resolve: {
+                    data: function () {
+                        return $q.reject();
+                    }
+                }
+            }
+        ];
+
+        expect(function () {
+            compileDirective()
+        }).toThrow();
     });
 });
