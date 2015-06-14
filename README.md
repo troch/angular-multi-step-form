@@ -28,6 +28,20 @@ It is lightweight (6kb minified) but extremely versatile and powerful.
 - Support for multiple components per view
 
 
+## Examples
+
+- [Getting started](http://blog.reactandbethankful.com/angular-multi-step-form/#/getting-started)
+- More to come
+
+
+## Docs
+
+- [Configuring steps](./docs/configuring-steps.md)
+- [Header content](./docs/header-content.md)
+- [Animations, navigation, callbacks](./docs/steps-lifecycle.md)
+- [Advanced guide](./docs/advanced-guide.md)
+
+
 ## Getting started
 
 Grab the sources with bower or download from Github: [https://github.com/troch/angular-multi-step-form/tree/master/dist](./dist):
@@ -62,17 +76,3 @@ And start your multiple step form / wizard:
 ```html
 <multi-step-container steps="yourSteps">
 ```
-
-
-## Examples
-
-- [Getting started](http://blog.reactandbethankful.com/angular-multi-step-form/#/getting-started)
-- More to come
-
-
-## Docs
-
-- [Configuring steps](./docs/configuring-steps.md)
-- [Header content](./docs/header-content.md)
-- [Animations, navigation, callbacks](../docs/steps-lifecycle.md)
-- [Advanced guide](./docs/advanced-guide.md)
