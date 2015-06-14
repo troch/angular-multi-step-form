@@ -32,6 +32,7 @@ It is lightweight (6kb minified) but extremely versatile and powerful.
 ## Examples
 
 - [Getting started](http://blog.reactandbethankful.com/angular-multi-step-form/#/getting-started)
+- [Using forms](http://blog.reactandbethankful.com/angular-multi-step-form/#/using-forms)
 - More to come
 
 
@@ -39,6 +40,7 @@ It is lightweight (6kb minified) but extremely versatile and powerful.
 
 - [Configuring steps](./docs/configuring-steps.md)
 - [Header or footer content](./docs/header-or-footer-content.md)
+- [Scopes](./docs/scopes.md)
 - [Animations, navigation, callbacks](./docs/steps-lifecycle.md)
 - [Advanced guide](./docs/advanced-guide.md)
 
