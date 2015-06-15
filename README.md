@@ -33,6 +33,7 @@ It is lightweight (6kb minified) but extremely versatile and powerful.
 
 - [Getting started](http://blog.reactandbethankful.com/angular-multi-step-form/#/getting-started)
 - [Using forms](http://blog.reactandbethankful.com/angular-multi-step-form/#/using-forms)
+- [Saving data](http://localhost:8080/angular-multi-step-form/#/saving-data)
 - More to come
 
 

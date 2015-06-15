@@ -18,3 +18,6 @@ The `multiStepContainer` directive scope (the top directive to use) and step sco
 By default, step scopes inherit from the top directive scope (which itself inherits from its view scope).
 You can configure steps to have an isolate scope by setting the `isolatedScope` property to true. An isolated scope
 will still be augmented with the helpers described above.
+
+When a step has an isolated scope, `multiStepFormScope` can be injected into your controller, in order to be
+able to access data from outside your step. See [saving data example](http://localhost:8080/angular-multi-step-form/#/saving-data).
