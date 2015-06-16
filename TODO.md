@@ -6,3 +6,4 @@
 - Test earlier versions of Angular, set bower deps accordingly
 - ~~Changelog~~
 - Add API for dynamically remove or add steps
+- Out of bounds navigation

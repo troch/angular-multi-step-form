@@ -8,6 +8,7 @@ The `multiStepContainer` directive scope (the top directive to use) and step sco
 - `$finish()`: to finish the current multi step form / wizard
 - `$getActiveIndex()`: return the index of the active step (start with 1)
 - `$getActiveStep()`: return the active step object
+- `$getSteps()`: return the list of step objects
 - `$nextStep()`: go to the next step
 - `$previousStep()`: return to the previous step
 - `$setActiveIndex()`: navigate to a specific step

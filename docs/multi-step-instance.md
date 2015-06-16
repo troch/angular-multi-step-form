@@ -40,6 +40,10 @@ Set the active step to the provided index (starting at 1).
 `multiStepFormInstance.getActiveStep()`  
 Return the current step (`FormStep` Object).
 
+<a name="getSteps"></a>
+`multiStepFormInstance.getSteps()`  
+Return the list of steps (`FormStep[]`)
+
 <a name="isFirst"></a>
 `multiStepFormInstance.isFirst()`  
 Return true if the current step is the first step, false otherwise.
@@ -57,5 +61,5 @@ Navigate to the next step.
 Navigate to the previous step.
 
 <a name="setValidity"></a>
-`multiStepFormInstance.setValidity(isValid[, stepIndex])`  
+`multiStepFormInstance.setValidity(isValid[, stepIndex])`
 Set the validity of the current step (or of the specified step index).

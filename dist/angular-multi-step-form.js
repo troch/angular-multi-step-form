@@ -562,6 +562,17 @@ angular.module('multiStepForm')
              * @ngdoc       property
              * @propertyOf  multiStepForm:multiStepForm
              *
+             * @description Return the form steps
+             * @return {Array}
+             */
+            this.getSteps = function () {
+                return this.steps;
+            };
+
+            /**
+             * @ngdoc       property
+             * @propertyOf  multiStepForm:multiStepForm
+             *
              * @description The multi-step form deferred object
              * @type {Deferred}
              */
@@ -655,7 +666,12 @@ angular.module('multiStepForm')
             this.setActiveIndex = function (step) {
                 if (this.searchId) {
                     // Update $location
-                    $location.search(this.searchId, step);
+                    if (this.activeIndex) {
+                        $location.search(this.searchId, step);
+                    } else {
+                        // Replace current one
+                        $location.search(this.searchId, step).replace();
+                    }
                 }
                 // Notify deferred object
                 this.deferred.notify({
@@ -751,7 +767,7 @@ angular.module('multiStepForm')
                 var self = this;
 
                 ['cancel', 'finish', 'getActiveIndex', 'setActiveIndex', 'getActiveStep',
-                 'nextStep', 'previousStep', 'isFirst', 'isLast', 'setValidity']
+                 'getSteps', 'nextStep', 'previousStep', 'isFirst', 'isLast', 'setValidity']
                     .forEach(function (method) {
                         scope['$' + method] = self[method].bind(self);
                     });
