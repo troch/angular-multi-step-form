@@ -36,6 +36,7 @@ It is lightweight (6kb minified) but extremely versatile and powerful.
 - [CSS transitions](http://blog.reactandbethankful.com/angular-multi-step-form/#/css-transitions)
 - [Cancel and Finish](http://blog.reactandbethankful.com/angular-multi-step-form/#/cancel-finish)
 - [Browser navigation](http://blog.reactandbethankful.com/angular-multi-step-form/#/browser-navigation)
+- [Inside a modal](http://blog.reactandbethankful.com/angular-multi-step-form/#/inside-modal)
 
 
 ## Docs
