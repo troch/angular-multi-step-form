@@ -1,3 +1,17 @@
+<a name="1.0.4"></a>
+### 1.0.4 (2015-06-16)
+
+
+#### Bug Fixes
+
+* **navigation:** replace current location with searchId when loading first step ([546ae30b](https://github.com/troch/angular-multi-step-form/commit/546ae30b))
+
+
+#### Features
+
+* **MultiStepForm:** add getSteps() method, add it to scopes (`$getSteps()`) ([72504619](https://github.com/troch/angular-multi-step-form/commit/72504619))
+
+
 <a name="1.0.3"></a>
 ### 1.0.3 (2015-06-16)
 

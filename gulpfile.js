@@ -53,8 +53,7 @@ function runKarmaTests(done) {
 function conventionalChangelog(done) {
     var log = clog({
         preset: 'angular',
-        repository: 'https://github.com/troch/angular-multi-step-form',
-        from: 'v1.0.0'
+        repository: 'https://github.com/troch/angular-multi-step-form'
     }, function (err, log) {
         console.log(log);
         fs.writeFile('CHANGELOG.md', log, done);
