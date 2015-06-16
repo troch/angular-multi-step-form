@@ -20,8 +20,8 @@ in the same way routes or states are defined in an AngularJS application:
 
 ## Additional step controller dependencies
 
-The `formStepElement` factory is responsible for creating step elements, instanciating their controllers
-and compiling their contents. When a controller is instanciated, two extra dependencies are available
+The `formStepElement` factory is responsible for creating step elements, instantiating their controllers
+and compiling their contents. When a controller is instantiated, two extra dependencies are available
 to locally inject:
 
 * `multiStepInstance`: the current instance of `MultiFormStep`.
