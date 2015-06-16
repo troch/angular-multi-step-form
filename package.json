@@ -25,7 +25,8 @@
     "karma-firefox-launcher": "^0.1.6",
     "karma-jasmine": "~0.3.0",
     "karma-ng-html2js-preprocessor": "^0.1.2",
-    "merge2": "^0.3.5"
+    "merge2": "^0.3.5",
+    "conventional-changelog": "0.0.17"
   },
   "repository": {
     "type": "git",

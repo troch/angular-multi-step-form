@@ -9,6 +9,9 @@ var html2js      = require('gulp-ng-html2js');
 var merge        = require('merge2');
 var minifyHTML   = require('gulp-minify-html');
 var karma        = require('karma');
+var fs           = require('fs');
+
+var clog         = require('conventional-changelog');
 
 function buildJs() {
     return merge(
@@ -45,6 +48,20 @@ function runKarmaTests(done) {
         singleRun: true
     }, done);
 }
+
+
+function conventionalChangelog(done) {
+    var log = clog({
+        preset: 'angular',
+        repository: 'https://github.com/troch/angular-multi-step-form',
+        from: 'v1.0.0'
+    }, function (err, log) {
+        console.log(log);
+        fs.writeFile('CHANGELOG.md', log, done);
+    });
+}
+
+gulp.task('clog', conventionalChangelog);
 
 gulp.task('test', gulp.series(buildJs, lintTestFiles, runKarmaTests));
 
