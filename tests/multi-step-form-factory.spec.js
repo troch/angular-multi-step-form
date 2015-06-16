@@ -77,6 +77,10 @@ describe('multiStepForm factory:', function () {
             multiStepFormInstance.previousStep();
             expect(multiStepFormInstance.getActiveIndex()).toEqual(1);
         });
+
+        it('should return the list of steps', function () {
+            expect(multiStepFormInstance.getSteps().length).toEqual(5)
+        });
     });
 
 
