@@ -772,7 +772,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('multi-step-form/partials/multi-step-container-with-footer.html',
-    '<section class=multi-step-container><article class=multi-step-body form-step-container></article><footer class=multi-step-footer multi-step-control-element></footer></section>');
+    '<section class=multi-step-container><main class=multi-step-body form-step-container></main><footer class=multi-step-footer multi-step-control-element></footer></section>');
 }]);
 })();
 
@@ -784,7 +784,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('multi-step-form/partials/multi-step-container-with-header.html',
-    '<section class=multi-step-container><header class=multi-step-header multi-step-control-element></header><article class=multi-step-body form-step-container></article></section>');
+    '<section class=multi-step-container><header class=multi-step-header multi-step-control-element></header><main class=multi-step-body form-step-container></main></section>');
 }]);
 })();
 
