@@ -126,7 +126,7 @@ angular.module('multiStepForm')
 
                             // Add direction class to the parent container;
                             stepContainer
-                                .removeClass('step-forward step-backward')
+                                .removeClass('step-forward step-backward step-initial')
                                 .addClass(direction);
 
                             // Cancel current leave animation if any
