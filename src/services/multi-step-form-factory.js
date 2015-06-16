@@ -153,7 +153,12 @@ angular.module('multiStepForm')
             this.setActiveIndex = function (step) {
                 if (this.searchId) {
                     // Update $location
-                    $location.search(this.searchId, step);
+                    if (this.activeIndex) {
+                        $location.search(this.searchId, step);
+                    } else {
+                        // Replace current one
+                        $location.search(this.searchId, step).replace();
+                    }
                 }
                 // Notify deferred object
                 this.deferred.notify({
