@@ -11,8 +11,7 @@ It is lightweight (6kb minified) but extremely versatile and powerful.
 
 ## Requirements
 
-- IE9+
-- Angular (tested with 1.3, should work with 1.2)
+- Angular 1.3+
 
 
 ## Features
