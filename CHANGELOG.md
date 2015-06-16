@@ -6,7 +6,7 @@
 
 * **multiStepContainer:** remove step-initial class before transition ([1570290f](https://github.com/troch/angular-multi-step-form/commit/1570290f))
 
-##### Features
+#### Features
 
 * **multiStepContainer:** use `main` rather than `article` in HTML template ([ba9680f](https://github.com/troch/angular-multi-step-form/commit/ba9680f))
 
