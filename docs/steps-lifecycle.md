@@ -19,7 +19,7 @@ By supplying a search ID to the `multiStepContainer` directive, navigation will 
 
     <multi-step-container steps="yourSteps" search-id="'id1'">
 
-The example above will add the search parameter 'id1' to your URL (you_url?id1=1).
+The example above will add the search parameter 'id1' to your URL (`you_url?id1=`).
 When initialising a view, the initialStep property has the priority over an already defined
 search parameter, allowing you to having total control over a manually entered URL when starting
 the form.

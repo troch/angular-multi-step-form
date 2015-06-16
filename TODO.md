@@ -5,3 +5,4 @@
 - Add controllerAs property for form steps
 - Test earlier versions of Angular, set bower deps accordingly
 - ~~Changelog~~
+- Add API for dynamically remove or add steps

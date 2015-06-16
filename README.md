@@ -41,9 +41,10 @@ It is lightweight (6kb minified) but extremely versatile and powerful.
 
 ## Docs
 
-- [Configuring steps](./docs/configuring-steps.md)
-- [Header or footer content](./docs/header-or-footer-content.md)
-- [Scopes](./docs/scopes.md)
+- [Configuring your steps](./docs/configuring-steps.md)
+- [The multiStepContainer directive](./docs/multi-step-container.md)
+- [Steps and directive scopes](./docs/scopes.md)
+- [Multi step form instance object](./docs/multi-step-instance.md)
 - [Animations, navigation, callbacks](./docs/steps-lifecycle.md)
 - [Advanced guide](./docs/advanced-guide.md)
 
