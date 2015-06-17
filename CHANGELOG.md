@@ -1,3 +1,12 @@
+<a name="1.0.5"></a>
+### 1.0.5 (2015-06-17)
+
+
+#### Features
+
+* **controllerAs:** support controllerAs syntax for steps ([9568676f](https://github.com/troch/angular-multi-step-form/commit/9568676f), closes [#1](https://github.com/troch/angular-multi-step-form/issues/1))
+
+
 <a name="1.0.4"></a>
 ### 1.0.4 (2015-06-16)
 

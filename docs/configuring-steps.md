@@ -6,6 +6,7 @@ Each step is defined with the following properties,
 in the same way routes or states are defined in an AngularJS application:
 
 * `controller` (optional)
+* `controllerAs`: an identifier name for a reference to the controller in scope
 * `template` or `templateUrl` property (required)
 * `resolve`
 * `locals` (like resolve but a more simple map of key-value pairs)
