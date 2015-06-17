@@ -375,6 +375,10 @@ angular.module('multiStepForm')
                         }
                         // Instanciate controller
                         controller = $controller(formStep.controller, locals);
+                        // controllerAs
+                        if (formStep.controllerAs) {
+                            formStepScope[formStep.controllerAs] = controller;
+                        }
                         formStepElement.data('$stepController', controller);
                         // formStepElement.children().data('$ngControllerController', controller);
                     }
@@ -434,6 +438,15 @@ angular.module('multiStepForm')
              * @type {String|Function|Array}
              */
             this.controller = config.controller;
+
+            /**
+             * @ngdoc       property
+             * @propertyOf  multiStepForm:FormStep
+             *
+             * @description An identifier name for a reference to the controller
+             * @type {String}
+             */
+            this.controllerAs = config.controllerAs;
 
             /**
              * @ngdoc       property

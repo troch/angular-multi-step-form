@@ -104,6 +104,10 @@ angular.module('multiStepForm')
                         }
                         // Instanciate controller
                         controller = $controller(formStep.controller, locals);
+                        // controllerAs
+                        if (formStep.controllerAs) {
+                            formStepScope[formStep.controllerAs] = controller;
+                        }
                         formStepElement.data('$stepController', controller);
                         // formStepElement.children().data('$ngControllerController', controller);
                     }

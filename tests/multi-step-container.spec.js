@@ -181,4 +181,19 @@ describe('multiStepContainer directive:', function() {
             compileDirective()
         }).toThrow();
     });
+
+    it('should support controllerAs syntax', function () {
+        scope.steps = [
+            {
+                title: 'Step 1',
+                template: 'Step 1',
+                controller: function () {
+                    this.name = 'name';
+                },
+                controllerAs: 'step'
+            }
+        ];
+        element = compileDirective();
+        expect(element.scope().$$childHead.step.name).toEqual('name');
+    });
 });

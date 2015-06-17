@@ -45,6 +45,15 @@ angular.module('multiStepForm')
              * @ngdoc       property
              * @propertyOf  multiStepForm:FormStep
              *
+             * @description An identifier name for a reference to the controller
+             * @type {String}
+             */
+            this.controllerAs = config.controllerAs;
+
+            /**
+             * @ngdoc       property
+             * @propertyOf  multiStepForm:FormStep
+             *
              * @description The form step template
              * @type {String}
              */
