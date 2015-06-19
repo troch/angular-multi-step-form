@@ -1,3 +1,21 @@
+<a name="1.1.0"></a>
+## 1.1.0 (2015-06-19)
+
+
+#### Features
+
+* add support for both header and footer. ([e80b944d](https://github.com/troch/angular-multi-step-form/commit/e80b944d), closes [#2](https://github.com/troch/angular-multi-step-form/issues/2))
+
+
+#### Breaking Changes
+
+* prior to this, there could only be a header or a footer. Now there can be both, as long as an element with the `stepContainer` directive is inside the `multiStepContainer` directive. See [migration guide](./docs/migrating-to-1.1.x)
+
+Fixes #2
+
+ ([e80b944d](https://github.com/troch/angular-multi-step-form/commit/e80b944d))
+
+
 <a name="1.0.5"></a>
 ### 1.0.5 (2015-06-17)
 
