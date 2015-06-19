@@ -6,5 +6,5 @@
  * @requires  multi-step-form.templates
  */
 angular.module('multiStepForm', [
-    'ngAnimate'
+    // 'ngAnimate'
 ]);
