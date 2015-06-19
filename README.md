@@ -79,7 +79,11 @@ $scope.steps = [
 ```
 
 And start your multiple step form / wizard:
+- Use the `multiStepContainer` directive
+- You need to use the `stepContainer` inside `multiStepContainer` to tell it where to load steps.
 
 ```html
 <multi-step-container steps="yourSteps">
+    <step-container></step-container>
+</multi-step-container>
 ```

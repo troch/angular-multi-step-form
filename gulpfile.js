@@ -5,8 +5,6 @@ var footer       = require('gulp-footer');
 var jshint       = require('gulp-jshint');
 var uglify       = require('gulp-uglify');
 var rename       = require('gulp-rename');
-var html2js      = require('gulp-ng-html2js');
-var merge        = require('merge2');
 var minifyHTML   = require('gulp-minify-html');
 var karma        = require('karma');
 var fs           = require('fs');
@@ -14,19 +12,9 @@ var fs           = require('fs');
 var clog         = require('conventional-changelog');
 
 function buildJs() {
-    return merge(
-            gulp.src(['src/*.js', 'src/**/*.js', '!src/**/*.spec.js'])
-                .pipe(jshint())
-                .pipe(jshint.reporter()),
-            gulp.src('src/**/*.html')
-                .pipe(minifyHTML())
-                .pipe(html2js({
-                    moduleName: 'multiStepForm.templates',
-                    prefix: 'multi-step-form/',
-                    stripPrefix: 'src/',
-                    declareModule: true
-                }))
-        )
+    return gulp.src(['src/*.js', 'src/**/*.js'])
+        .pipe(jshint())
+        .pipe(jshint.reporter())
         .pipe(concat('angular-multi-step-form.js'))
         .pipe(header('(function(window, angular){\n"use strict";\n'))
         .pipe(footer('\n})(window, window.angular);'))
@@ -48,7 +36,6 @@ function runKarmaTests(done) {
         singleRun: true
     }, done);
 }
-
 
 function conventionalChangelog(done) {
     var log = clog({

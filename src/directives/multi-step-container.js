@@ -15,18 +15,14 @@ angular.module('multiStepForm')
     '$animate',
     '$parse',
     '$q',
+    '$log',
     'multiStepForm',
     'FormStep',
     'formStepElement',
-    function ($animate, $parse, $q, multiStepForm, FormStep, formStepElement) {
+    function ($animate, $parse, $q, $log, multiStepForm, FormStep, formStepElement) {
         return {
             restrict: 'EA',
-            templateUrl: function(elem, attr) {
-                return 'multi-step-form/partials/multi-step-container-with-' + (angular.isDefined(attr.useFooter) ? 'footer' : 'header') + '.html';
-            },
             scope: true,
-            replace: true,
-            transclude: true,
             /**
              * @ngdoc    controller
              * @name     multiStepForm:MultiStepFormCtrl
@@ -50,19 +46,6 @@ angular.module('multiStepForm')
                      */
                     this.setStepContainer = function (elm) {
                         this.stepContainer = elm;
-                    };
-
-                    /**
-                     * @ngdoc    function
-                     * @methodOf multiStepForm:MultiStepFormCtrl
-                     *
-                     * @description Register the multi step header element. This method
-                     *              is invoked in the post link function of directive
-                     *              {@link multiStepForm:multiStepControlElement multiStepControlElement}
-                     * @param {JQLite} elm The multi step header
-                     */
-                    this.setMultiStepControlElement = function (elm) {
-                        this.multiStepControlElement = elm;
                     };
                 }
             ],
@@ -88,11 +71,23 @@ angular.module('multiStepForm')
                         return step.title;
                     });
                 },
-                post: function postLink(scope, element, attrs, controller, $transclude) {
+                post: function postLink(scope, element, attrs, controller) {
                     function destroy() {
                         $animate.leave(element);
                         scope.$destroy();
                     }
+                    // Check that a step container has been defined
+                    if (attrs.useFooter !== undefined) {
+                        $log.warn('useFooter attribute is no longer supported. Instead you need to define were you want your steps to be added.');
+                    }
+                    if (controller.stepContainer === undefined) {
+                        $log.warn('You need to define a step container, using the stepContainer directive (element and attribute supported).');
+                        $log.warn('See changelog: https://github.com/troch/angular-multi-step-form/blob/master/CHANGELOG.md');
+                        $log.warn('See migration guide: https://github.com/troch/angular-multi-step-form/blob/master/docs/migrating-to-1.1.x.md');
+                        throw new Error('Step container not found');
+                    }
+                    // Add .multi-step-container class
+                    element.addClass('multi-step-container');
                     // Callbacks
                     var onFinish = attrs.onFinish ? $parse(attrs.onFinish).bind(scope, scope) : destroy,
                         onCancel = attrs.onCancel ? $parse(attrs.onCancel).bind(scope, scope) : destroy;
@@ -156,15 +151,8 @@ angular.module('multiStepForm')
                                 });
                         });
 
-                        // Initialise currentStep
-                        multiStepFormInstance.setInitialIndex(initialStep);
-
-                    // Handle transclusion manually to avoid
-                    // creation of a sibling scope
-                    $transclude(scope, function(clone) {
-                        controller.multiStepControlElement.empty();
-                        controller.multiStepControlElement.append(clone);
-                    });
+                    // Initialise currentStep
+                    multiStepFormInstance.setInitialIndex(initialStep);
                 }
             }
         };

@@ -13,7 +13,6 @@ module.exports = function (config) {
       'bower_components/angular-mocks/angular-mocks.js',
       'src/*.js',
       'src/**/*.js',
-      'src/**/*.html',
       'tests/*.js'
     ],
 
@@ -23,7 +22,6 @@ module.exports = function (config) {
       'karma-jasmine',
       'karma-chrome-launcher',
       'karma-firefox-launcher',
-      'karma-ng-html2js-preprocessor',
       'karma-coverage',
       'karma-coveralls'
     ],
@@ -39,15 +37,8 @@ module.exports = function (config) {
         ],
     },
 
-    ngHtml2JsPreprocessor: {
-      stripPrefix: 'src/',
-      prependPrefix: 'multi-step-form/',
-      moduleName: 'multiStepForm.templates'
-    },
-
     preprocessors: {
-      'src/**/*.js': ['coverage'],
-      'src/**/*.html': ['ng-html2js']
+      'src/**/*.js': ['coverage']
     },
 
     port: 9876,

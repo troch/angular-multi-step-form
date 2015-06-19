@@ -15,7 +15,6 @@
     "gulp-htmlhint": "^0.1.1",
     "gulp-jshint": "^1.9.4",
     "gulp-minify-html": "^1.0.3",
-    "gulp-ng-html2js": "^0.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.2.0",
     "karma": "~0.12.0",
@@ -25,7 +24,6 @@
     "karma-firefox-launcher": "^0.1.6",
     "karma-jasmine": "~0.3.0",
     "karma-ng-html2js-preprocessor": "^0.1.2",
-    "merge2": "^0.3.5",
     "conventional-changelog": "0.0.17"
   },
   "repository": {

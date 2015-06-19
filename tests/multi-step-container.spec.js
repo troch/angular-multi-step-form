@@ -5,6 +5,7 @@ describe('multiStepContainer directive:', function() {
         $compile,
         $location,
         $q,
+        $log,
         scope;
 
     var template1 = '<h1>Step 1</h1>',
@@ -13,11 +14,12 @@ describe('multiStepContainer directive:', function() {
                 '<input type="text" ng-model="model" required />' +
             '</form>';
 
-    beforeEach(inject(function(_$compile_, _$rootScope_, _$location_, $templateCache, _$q_) {
+    beforeEach(inject(function(_$compile_, _$rootScope_, _$location_, $templateCache, _$q_, _$log_) {
         $compile = _$compile_;
         $rootScope = _$rootScope_;
         $location = _$location_;
         $q = _$q_;
+        $log = _$log_;
 
         scope = $rootScope.$new();
         scope.steps = [
@@ -49,10 +51,8 @@ describe('multiStepContainer directive:', function() {
 
     function compileDirective(config) {
         var element = angular.element('<multi-step-container steps="steps" />');
+        element.append('<main step-container></main>');
 
-        if (angular.isString(config)) {
-            element.append(config);
-        }
         if (angular.isObject(config)) {
             if (config.html) {
                 element.append(config.html);
@@ -71,19 +71,31 @@ describe('multiStepContainer directive:', function() {
         return element;
     }
 
+    it('should throw an error if no step container is supplied', function () {
+        var element = angular.element('<multi-step-container steps="steps" />');
+        expect(function () {
+            $compile(element)(scope);
+            $rootScope.$digest();
+        }).toThrow();
+    });
+
+    it('should warn the user if userFooter is used (migration)', function () {
+        var element = angular.element('<multi-step-container steps="steps" use-footer/>')
+            .append('<main step-container></main>');
+        spyOn($log, 'warn');
+        $compile(element)(scope);
+        $rootScope.$digest();
+        expect($log.warn).toHaveBeenCalled();
+    });
+
     it('should start on the first step by default', function () {
         element = compileDirective();
-        expect(element.children().eq(1).html()).toContain('Step 1');
+        expect(element.children().eq(0).html()).toContain('Step 1');
     });
 
     it('should start on the specified initial step if provided', function () {
         element = compileDirective({initialStep: 2});
-        expect(element.children().eq(1).html()).toContain('Step 2');
-    });
-
-    it('should have its content transcluded into its header', function() {
-        element = compileDirective('Multi step form header');
-        expect(element.children().eq(0).html()).toContain('Multi step form header');
+        expect(element.children().eq(0).html()).toContain('Step 2');
     });
 
     it('should have its header augmented with multiStepForm functions', function () {
@@ -91,15 +103,15 @@ describe('multiStepContainer directive:', function() {
         // Go to next
         element.scope().$nextStep();
         scope.$digest();
-        expect(element.children().eq(1).html()).toContain('Step 2');
+        expect(element.children().eq(0).html()).toContain('Step 2');
         // Go to previous
         element.scope().$previousStep();
         scope.$digest();
-        expect(element.children().eq(1).html()).toContain('Step 1');
+        expect(element.children().eq(0).html()).toContain('Step 1');
         // Go to a specific step
         element.scope().$setActiveIndex(2);
         scope.$digest();
-        expect(element.children().eq(1).html()).toContain('Step 2');
+        expect(element.children().eq(0).html()).toContain('Step 2');
     });
 
     it('should update the location if a search ID is provided', function () {
@@ -112,7 +124,7 @@ describe('multiStepContainer directive:', function() {
         $location.search('multi1', 2);
         $rootScope.$emit('$locationChangeSuccess');
         scope.$digest();
-        expect(element.children().eq(1).html()).toContain('Step 2');
+        expect(element.children().eq(0).html()).toContain('Step 2');
     });
 
     it('should start with the step provided in URL if no intialStep defined', function () {
@@ -120,14 +132,14 @@ describe('multiStepContainer directive:', function() {
         $rootScope.$emit('$locationChangeSuccess');
         scope.$digest();
         element = compileDirective({searchId: "'multi1'"});
-        expect(element.children().eq(1).html()).toContain('Step 2');
+        expect(element.children().eq(0).html()).toContain('Step 2');
         expect($location.search().multi1).toEqual(2);
     });
 
     it('should force the initial step to be the one provided to the directive', function () {
         $location.search('multi1', 2);
         element = compileDirective({searchId: "'multi1'", initialStep: 1});
-        expect(element.children().eq(1).html()).toContain('Step 1');
+        expect(element.children().eq(0).html()).toContain('Step 1');
         expect($location.search().multi1).toEqual(1);
     });
 

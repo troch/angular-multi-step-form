@@ -1,21 +1,22 @@
 angular.module('multiStepForm')
 /**
  * @ngdoc    directive
- * @name     multiStepForm:formStepContainer
+ * @name     multiStepForm:stepContainer
  *
- * @requires multiStepForm:multiStepContainer
+ * @requires multiStepForm:stepContainer
  *
  * @restrict A
  * @description The container for form steps. It registers itself with the multi step container.
  *              {@link multiStepForm:multiStepContainer multiStepContainer}
  */
-.directive('formStepContainer', [
+.directive('stepContainer', [
     function () {
         return {
-            restrict: 'A',
+            restrict: 'EA',
             require: '^^multiStepContainer',
             scope: false,
             link: function postLink(scope, element, attrs, multiStepCtrl) {
+                element.addClass('multi-step-body');
                 multiStepCtrl.setStepContainer(element);
             }
         };
