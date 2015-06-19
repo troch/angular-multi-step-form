@@ -2,6 +2,11 @@
 ## 1.1.0 (2015-06-19)
 
 
+#### Bug Fixes
+
+* remove ngAnimate dependency ([6bf652e5](https://github.com/troch/angular-multi-step-form/commit/6bf652e5))
+
+
 #### Features
 
 * add support for both header and footer. ([e80b944d](https://github.com/troch/angular-multi-step-form/commit/e80b944d), closes [#2](https://github.com/troch/angular-multi-step-form/issues/2))
@@ -14,6 +19,12 @@
 Fixes #2
 
  ([e80b944d](https://github.com/troch/angular-multi-step-form/commit/e80b944d))
+
+
+
+<a name="1.1.0"></a>
+## 1.1.0 (2015-06-19)
+
 
 
 <a name="1.0.5"></a>
