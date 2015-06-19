@@ -28,6 +28,13 @@ It is lightweight (6kb minified) but extremely versatile and powerful.
 - Support for multiple components per view
 
 
+## Breaking changes with 1.1.x
+
+See changelog and migration guide:
+
+- [Changelog](./CHANGELOG.md)
+- [Migration to 1.1.x](./docs/migrating-to-1.1.x.md)
+
 ## Examples
 
 - [Getting started](http://blog.reactandbethankful.com/angular-multi-step-form/#/getting-started)

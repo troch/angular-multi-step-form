@@ -14,7 +14,7 @@
 
 #### Breaking Changes
 
-* prior to this, there could only be a header or a footer. Now there can be both, as long as an element with the `stepContainer` directive is inside the `multiStepContainer` directive. See [migration guide](./docs/migrating-to-1.1.x)
+* prior to this, there could only be a header or a footer. Now there can be both, as long as an element with the `stepContainer` directive is inside the `multiStepContainer` directive. See [migration guide](./docs/migrating-to-1.1.x.md)
 
 Fixes #2
 
