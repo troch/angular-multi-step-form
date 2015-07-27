@@ -26,7 +26,7 @@ Call the provided `onCancel` callback or destroy the multi-step form component.
 
 <a name="finish"></a>
 `multiStepFormInstance.finish()`  
-Call the provided `onCancel` callback or destroy the multi-step form component.
+Call the provided `onFinish` callback or destroy the multi-step form component.
 
 <a name="getActiveIndex"></a>
 `multiStepFormInstance.getActiveIndex()`  
