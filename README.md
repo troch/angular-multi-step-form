@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/troch/angular-multi-step-form.svg?branch=master)](https://travis-ci.org/troch/angular-multi-step-form)
 [![Coverage Status](https://coveralls.io/repos/troch/angular-multi-step-form/badge.svg?branch=master)](https://coveralls.io/r/troch/angular-multi-step-form?branch=master)
 
-# Angular Multi step form (1.1.0)
+# Angular Multi step form (1.1.1)
 
 `multiStepForm` is an angular module to create multi step forms and wizards. Create your steps like your would
 create your views with ngRoute or ui-router!
