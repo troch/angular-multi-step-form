@@ -36,7 +36,7 @@ angular.module('multiStepForm')
                 $injector.$invoke(formStep.templateUrl) :
                 formStep.templateUrl;
             // Request templateUrl using $templateCache
-            return $http.get(formStep.templateUrl, {cache: $templateCache});
+            return $http.get(templateUrl, {cache: $templateCache});
         }
 
         /**
