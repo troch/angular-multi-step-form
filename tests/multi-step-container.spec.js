@@ -208,4 +208,19 @@ describe('multiStepContainer directive:', function() {
         element = compileDirective();
         expect(element.scope().$$childHead.step.name).toEqual('name');
     });
+
+    it('should invoke a provided callback on transition', function () {
+        scope.onStepChange = jasmine.createSpy('onStepChange');
+        var element = angular.element('<multi-step-container steps="steps" on-step-change="onStepChange()" />');
+        element.append('<main step-container></main>');
+
+        $compile(element)(scope);
+        $rootScope.$digest();
+        element.scope().$nextStep();
+        expect(scope.onStepChange).toHaveBeenCalled();
+
+        element.scope().$nextStep();
+        $rootScope.$digest();
+        expect(scope.onStepChange.calls.count()).toBe(2);
+    });
 });
