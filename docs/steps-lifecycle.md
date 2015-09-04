@@ -29,10 +29,11 @@ the form.
 Callbacks can be supplied to the multiStepContainer directive.
 
     <multi-step-container steps="yourSteps"
-        on-cancel="onCancel()" on-finish="onFinish()">
+        on-cancel="onCancel()" on-finish="onFinish()" on-step-change="onStepChange()">
 
 * `onCancel` attribute: the provided callback will be invoked when the multi step form is cancelled
 * `onFinish` attribute: the provided callback will be invoked when the multi step form is finished
+* `onStepChange` attribute: the provided callback will be invoked on each step change
 
 By default, the directive element and its scope are destroyed on cancel and on finish. If you want
 to navigate away from the current view, you need to supply onCancel and onFinish callbacks.

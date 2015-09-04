@@ -138,7 +138,8 @@ angular.module('multiStepForm')
                     element.addClass('multi-step-container');
                     // Callbacks
                     var onFinish = attrs.onFinish ? $parse(attrs.onFinish).bind(scope, scope) : destroy,
-                        onCancel = attrs.onCancel ? $parse(attrs.onCancel).bind(scope, scope) : destroy;
+                        onCancel = attrs.onCancel ? $parse(attrs.onCancel).bind(scope, scope) : destroy,
+                        onStepChange = attrs.onStepChange ? $parse(attrs.onStepChange).bind(scope, scope) : angular.noop;
                     // Step container (populated by child post link function)
                     var stepContainer = controller.stepContainer,
                         multiStepFormInstance = multiStepForm(scope.$eval(attrs.searchId)),
@@ -190,9 +191,10 @@ angular.module('multiStepForm')
                             }
                             // Enter new step when new step element is ready
                             newStepElement
-                                .then(function (data) {
-                                    currentStepScope = data.scope;
-                                    currentStepElement = data.element;
+                                .then(function (step) {
+                                    onStepChange();
+                                    currentStepScope = step.scope;
+                                    currentStepElement = step.element;
                                     currentStepElement.scrollTop = 0;
                                     stepContainer.scrollTop = 0;
                                     currentEnterAnimation = $animate.enter(currentStepElement, stepContainer);

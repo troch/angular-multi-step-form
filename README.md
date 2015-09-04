@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/troch/angular-multi-step-form.svg?branch=master)](https://travis-ci.org/troch/angular-multi-step-form)
 [![Coverage Status](https://coveralls.io/repos/troch/angular-multi-step-form/badge.svg?branch=master)](https://coveralls.io/r/troch/angular-multi-step-form?branch=master)
 
-# Angular Multi step form (1.1.2)
+# Angular Multi step form (1.2.0)
 
 `multiStepForm` is an angular module to create multi step forms and wizards. Create your steps like your would
 create your views with ngRoute or ui-router!
@@ -21,7 +21,7 @@ It is lightweight (6kb minified) but extremely versatile and powerful.
 - Forward and backward animations
 - Isolated or non isolated scopes for steps
 - Track step validity if it contains a form
-- `onCancel` and `onFinish` callbacks
+- `onCancel`, `onFinish` and `onStepChange` callbacks
 - Browser navigation with search URL parameter
 - You decide what level of control you expose to the user: next, previous, jump to state, finish, cancel, etc...
 - Place summary, controls, etc... in header or footer

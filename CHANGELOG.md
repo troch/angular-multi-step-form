@@ -1,3 +1,12 @@
+<a name"1.2.0"></a>
+## 1.2.0 (2015-09-04)
+
+
+#### Features
+
+* add 'onStepChange' callback ([d9c188b7](https://github.com/troch/angular-multi-step-form/commit/d9c188b7))
+
+
 <a name"1.1.2"></a>
 ### 1.1.2 (2015-09-04)
 

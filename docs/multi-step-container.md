@@ -27,6 +27,9 @@ The expression to execute if the multi-step form is finished.
 `onCancel`  _angular expression_
 The expression to execute if the multi-step form is cancelled.
 
+`onStepChange`  _angular expression_
+The expression to execute on a step change.
+
 ## Class names
 
 The following class names are added:
