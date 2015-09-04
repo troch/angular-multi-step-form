@@ -1,3 +1,12 @@
+<a name"1.1.2"></a>
+### 1.1.2 (2015-09-04)
+
+
+#### Features
+
+* scroll to top of form set container on step change ([72cca503](https://github.com/troch/angular-multi-step-form/commit/72cca503))
+
+
 <a name="1.1.0"></a>
 ## 1.1.0 (2015-06-19)
 

@@ -193,6 +193,8 @@ angular.module('multiStepForm')
                                 .then(function (data) {
                                     currentStepScope = data.scope;
                                     currentStepElement = data.element;
+                                    currentStepElement.scrollTop = 0;
+                                    stepContainer.scrollTop = 0;
                                     currentEnterAnimation = $animate.enter(currentStepElement, stepContainer);
                                 }, function () {
                                     throw new Error('Could not load step ' + step);
