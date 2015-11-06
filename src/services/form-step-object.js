@@ -30,7 +30,7 @@ angular.module('multiStepForm')
              * @description The form step additional data
              * @type {Object}
              */
-            this.data = config.data | {};
+            this.data = config.data || {};
 
             /**
              * @ngdoc       property
