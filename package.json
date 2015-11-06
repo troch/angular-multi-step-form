@@ -24,7 +24,8 @@
     "karma-firefox-launcher": "^0.1.6",
     "karma-jasmine": "~0.3.0",
     "karma-ng-html2js-preprocessor": "^0.1.2",
-    "conventional-changelog": "0.0.17"
+    "conventional-changelog": "0.0.17",
+    "chokidar": "^1.2.0"
   },
   "repository": {
     "type": "git",
