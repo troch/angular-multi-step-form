@@ -9,6 +9,7 @@
   },
   "main": "dist/commonjs",
   "devDependencies": {
+    "chokidar": "^1.2.0",
     "conventional-changelog": "0.0.17",
     "coveralls": "^2.11.2",
     "del": "^2.0.2",
