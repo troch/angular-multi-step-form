@@ -1,6 +1,16 @@
-import angular from 'angular';
+'use strict';
 
-export default formStepValidity;
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _angular = require('angular');
+
+var _angular2 = _interopRequireDefault(_angular);
+
+exports['default'] = formStepValidity;
 
 /**
  * @ngdoc    directive
@@ -19,19 +29,18 @@ function formStepValidity($parse) {
         link: function postLink(scope, element, attrs, formCtrl) {
             // The callback to call when a change of validity
             // is detected
-            var validtyChangeCallback = attrs.formStepValidity ?
-                $parse(attrs.formStepValidity).bind(scope, scope) :
-                scope.$setValidity;
+            var validtyChangeCallback = attrs.formStepValidity ? $parse(attrs.formStepValidity).bind(scope, scope) : scope.$setValidity;
 
             // Watch the form validity
             scope.$watch(function () {
                 return formCtrl.$valid;
             }, function (val) {
                 // Check if defined
-                if (angular.isDefined(val)) {
+                if (_angular2['default'].isDefined(val)) {
                     validtyChangeCallback(val);
                 }
             });
         }
     };
 }
+module.exports = exports['default'];

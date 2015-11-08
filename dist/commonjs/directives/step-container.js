@@ -1,4 +1,9 @@
-export default stepContainer;
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+exports['default'] = stepContainer;
 
 /**
  * @ngdoc    directive
@@ -23,3 +28,4 @@ function stepContainer() {
         }
     };
 }
+module.exports = exports['default'];

@@ -1,4 +1,9 @@
-export default multiStepForm;
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+exports['default'] = multiStepForm;
 
 /**
  * @ngdoc       function
@@ -133,7 +138,7 @@ function multiStepForm($q, $location, $rootScope) {
             }
             // Otherwise use search ID if applicable
             if (this.searchId) {
-                searchIndex =  parseInt($location.search()[self.searchId]);
+                searchIndex = parseInt($location.search()[self.searchId]);
                 if (!isNaN(searchIndex)) {
                     return this.setActiveIndex(searchIndex);
                 }
@@ -241,7 +246,6 @@ function multiStepForm($q, $location, $rootScope) {
             }
         };
 
-
         /**
          * @ngdoc       method
          * @methodOf    multiStepForm:multiStepForm
@@ -252,11 +256,9 @@ function multiStepForm($q, $location, $rootScope) {
         this.augmentScope = function (scope) {
             var self = this;
 
-            ['cancel', 'finish', 'getActiveIndex', 'setActiveIndex', 'getActiveStep',
-             'getSteps', 'nextStep', 'previousStep', 'isFirst', 'isLast', 'setValidity']
-                .forEach(function (method) {
-                    scope['$' + method] = self[method].bind(self);
-                });
+            ['cancel', 'finish', 'getActiveIndex', 'setActiveIndex', 'getActiveStep', 'getSteps', 'nextStep', 'previousStep', 'isFirst', 'isLast', 'setValidity'].forEach(function (method) {
+                scope['$' + method] = self[method].bind(self);
+            });
         };
     }
 
@@ -264,3 +266,4 @@ function multiStepForm($q, $location, $rootScope) {
         return new MultiFormStep(searchId);
     };
 }
+module.exports = exports['default'];

@@ -9,10 +9,9 @@ module.exports = function (config) {
      */
     files: [
       'bower_components/angular/angular.js',
-      'bower_components/angular-animate/angular-animate.js',
+      'dist/browser/angular-multi-step-form.js',
+      // 'bower_components/angular-animate/angular-animate.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'src/*.js',
-      'src/**/*.js',
       'tests/*.js'
     ],
 

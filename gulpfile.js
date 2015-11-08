@@ -1,27 +1,46 @@
 var gulp         = require('gulp');
+var babel        = require('gulp-babel');
+var runSequence  = require('run-sequence');
+var rename       = require('gulp-rename');
+var uglify       = require('gulp-uglify');
+var del          = require('del');
+var clog         = require('conventional-changelog');
 var concat       = require('gulp-concat');
 var header       = require('gulp-header');
 var footer       = require('gulp-footer');
-var jshint       = require('gulp-jshint');
-var uglify       = require('gulp-uglify');
 var rename       = require('gulp-rename');
-var minifyHTML   = require('gulp-minify-html');
-var karma        = require('karma');
-var fs           = require('fs');
+var jshint       = require('gulp-jshint');
 
-var clog         = require('conventional-changelog');
+var files = [
+    'src/*/*.js',
+    'src/index.js'
+];
 
-function buildJs() {
-    return gulp.src(['src/*.js', 'src/**/*.js'])
-        .pipe(jshint())
+var globalWrapper = {
+    header: '(function (angular) {\n"use strict";\n',
+    footer: '\n}(angular));\n'
+};
+
+function buildBundle() {
+    return gulp.src(files)
+        .pipe(jshint({ esnext: true }))
         .pipe(jshint.reporter())
+        .pipe(babel({modules: 'ignore', blacklist: ['strict']}))
         .pipe(concat('angular-multi-step-form.js'))
-        .pipe(header('(function(window, angular){\n"use strict";\n'))
-        .pipe(footer('\n})(window, window.angular);'))
-        .pipe(gulp.dest('dist'))
+        .pipe(header(globalWrapper.header))
+        .pipe(footer(globalWrapper.footer))
+        .pipe(gulp.dest('dist/browser'))
         .pipe(uglify())
         .pipe(rename('angular-multi-step-form.min.js'))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist/browser'));
+}
+
+function buildJs() {
+    return gulp.src(files)
+        .pipe(jshint({ esnext: true }))
+        .pipe(jshint.reporter())
+        .pipe(babel({modules: 'common'}))
+        .pipe(gulp.dest('dist/commonjs'));
 }
 
 function lintTestFiles() {
@@ -49,7 +68,19 @@ function conventionalChangelog(done) {
 
 gulp.task('clog', conventionalChangelog);
 
-gulp.task('test', gulp.series(buildJs, lintTestFiles, runKarmaTests));
+gulp.task('clean', function () {
+    return del(['dist', 'coverage']);
+});
+gulp.task('buildJs', buildJs);
+gulp.task('buildBundle', buildBundle);
+gulp.task('lintTestFiles', lintTestFiles);
+gulp.task('runKarmaTests', runKarmaTests);
 
-gulp.task('build', buildJs);
+gulp.task('test', function () {
+    return runSequence('buildJs', 'lintTestFiles', 'runKarmaTests');
+});
+
+gulp.task('build', function () {
+    return runSequence('clean', ['buildJs', 'buildBundle']);
+});
 // gulp.task('build', gulp.parallel(buildJs, 'test'));

@@ -1,12 +1,12 @@
 {
   "name": "angular-multi-step-form",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "homepage": "https://github.com/troch/angular-multi-step-form",
   "authors": [
     "Thomas Roch <thomas.c.roch@gmail.com>"
   ],
   "description": "An Angular module for creating wizards and multi step forms",
-  "main": "dist/angular-multi-step-form.min.js",
+  "main": "dist/browser/angular-multi-step-form.min.js",
   "license": "ISC",
   "ignore": [
     "**/.*",
