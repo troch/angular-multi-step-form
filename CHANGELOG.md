@@ -1,3 +1,17 @@
+<a name"1.2.2"></a>
+### 1.2.2 (2015-11-08)
+
+
+#### Bug Fixes
+
+* fix assignment of custom data to steps ([b2707ad8](https://github.com/troch/angular-multi-step-form/commit/b2707ad8))
+
+
+#### Features
+
+* use ES6 modules for npm package. Main bower file is now in `dist/browser` and not `dist` ([9deeee20](https://github.com/troch/angular-multi-step-form/commit/9deeee20))
+
+
 <a name"1.2.0"></a>
 ## 1.2.0 (2015-09-04)
 

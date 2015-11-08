@@ -10,6 +10,7 @@ var header       = require('gulp-header');
 var footer       = require('gulp-footer');
 var rename       = require('gulp-rename');
 var jshint       = require('gulp-jshint');
+var fs           = require('fs');
 
 var files = [
     'src/*/*.js',

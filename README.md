@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/troch/angular-multi-step-form.svg?branch=master)](https://travis-ci.org/troch/angular-multi-step-form)
 [![Coverage Status](https://coveralls.io/repos/troch/angular-multi-step-form/badge.svg?branch=master)](https://coveralls.io/r/troch/angular-multi-step-form?branch=master)
 
-# Angular Multi step form (1.2.1)
+# Angular Multi step form (1.2.2)
 
 `multiStepForm` is an angular module to create multi step forms and wizards. Create your steps like your would
 create your views with ngRoute or ui-router!
@@ -58,17 +58,28 @@ See changelog and migration guide:
 
 ## Getting started
 
-Grab the sources with bower or download from Github: [https://github.com/troch/angular-multi-step-form/tree/master/dist](./dist):
+Grab the sources with bower, npm or download from Github: [https://github.com/troch/angular-multi-step-form/tree/master/dist](./dist):
 
 ```sh
-$ bower install --save-dev angular-multi-step-form
+$ npm install --save angular-multi-step-form;
+$ bower install --savev angular-multi-step-form
 ```
 
-Include the `multiStepForm` module in your app:
+Include `multiStepForm` module in your app:
 
 ```javascript
 angular.module('yourApp', [
     'multiStepForm'
+]);
+```
+
+Or (with npm):
+
+```javascript
+import multiStepForm from 'angular-multi-step-form';
+
+angular.module('yourApp', [
+    multiStepForm.name
 ]);
 ```
 
