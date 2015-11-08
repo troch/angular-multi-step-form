@@ -3,7 +3,7 @@
   "version": "1.2.2",
   "description": "An Angular module for creating wizards and multi step forms",
   "scripts": {
-    "build": "gulp build",
+    "build": "./node_modules/.bin/gulp build",
     "clog": "gulp clog",
     "test": "karma start karma.config.js --single-run --browsers Firefox"
   },
@@ -12,13 +12,12 @@
     "conventional-changelog": "0.0.17",
     "coveralls": "^2.11.2",
     "del": "^2.0.2",
-    "gulp": "^3.9.0",
+    "gulp": "3.9.0",
     "gulp-babel": "^5.3.0",
     "gulp-concat": "^2.5.2",
     "gulp-footer": "^1.0.5",
     "gulp-header": "^1.2.2",
     "gulp-jshint": "^1.9.4",
-    "gulp-ng-annotate": "^1.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-uglify": "^1.4.2",
     "karma": "~0.12.0",
@@ -27,7 +26,6 @@
     "karma-coveralls": "^1.1.0",
     "karma-firefox-launcher": "^0.1.6",
     "karma-jasmine": "~0.3.0",
-    "karma-ng-html2js-preprocessor": "^0.1.2",
     "run-sequence": "^1.1.4"
   },
   "peerDependencies": {
@@ -42,5 +40,8 @@
   "bugs": {
     "url": "https://github.com/troch/angular-multi-step-form/issues"
   },
-  "homepage": "https://github.com/troch/angular-multi-step-form"
+  "homepage": "https://github.com/troch/angular-multi-step-form",
+  "dependencies": {
+    "gulp": "gulpjs/gulp#4.0"
+  }
 }

@@ -72,16 +72,8 @@ gulp.task('clog', conventionalChangelog);
 gulp.task('clean', function () {
     return del(['dist', 'coverage']);
 });
-gulp.task('buildJs', buildJs);
-gulp.task('buildBundle', buildBundle);
-gulp.task('lintTestFiles', lintTestFiles);
-gulp.task('runKarmaTests', runKarmaTests);
 
-gulp.task('test', function () {
-    return runSequence('buildJs', 'lintTestFiles', 'runKarmaTests');
-});
+gulp.task('test', gulp.series(buildJs, lintTestFiles, runKarmaTests));
 
-gulp.task('build', function () {
-    return runSequence('clean', ['buildJs', 'buildBundle']);
-});
+gulp.task('build', gulp.series(buildJs, buildBundle));
 // gulp.task('build', gulp.parallel(buildJs, 'test'));

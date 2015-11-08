@@ -3,6 +3,7 @@ node_js:
   - '0.12'
 before_script:
   - npm install -g bower
+  - npm install "gulpjs/gulp-cli#4.0"
   - bower install -f
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
