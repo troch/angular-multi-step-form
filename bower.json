@@ -6,7 +6,7 @@
     "Thomas Roch <thomas.c.roch@gmail.com>"
   ],
   "description": "An Angular module for creating wizards and multi step forms",
-  "main": "dist/browser/angular-multi-step-form.min.js",
+  "main": "dist/browser/angular-multi-step-form.js",
   "license": "ISC",
   "ignore": [
     "**/.*",
