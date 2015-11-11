@@ -1,3 +1,12 @@
+<a name"1.2.4"></a>
+### 1.2.4 (2015-11-11)
+
+
+#### Bug Fixes
+
+* set main file configuration in bower package to non minified version ([a5e55ba9](https://github.com/troch/angular-multi-step-form/commit/a5e55ba9))
+
+
 <a name"1.2.3"></a>
 ### 1.2.3 (2015-11-11)
 
