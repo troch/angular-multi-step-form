@@ -157,4 +157,5 @@ function multiStepContainer($animate, $parse, $q, $log, multiStepForm, FormStep,
         }
     };
 }
+multiStepContainer.$inject = ["$animate", "$parse", "$q", "$log", "multiStepForm", "FormStep", "formStepElement"];
 module.exports = exports['default'];

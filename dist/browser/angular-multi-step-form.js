@@ -33,6 +33,7 @@ function formStepValidity($parse) {
         }
     };
 }
+formStepValidity.$inject = ["$parse"];
 
 
 /**
@@ -180,6 +181,7 @@ function multiStepContainer($animate, $parse, $q, $log, multiStepForm, FormStep,
         }
     };
 }
+multiStepContainer.$inject = ["$animate", "$parse", "$q", "$log", "multiStepForm", "FormStep", "formStepElement"];
 
 
 /**
@@ -319,6 +321,7 @@ function formStepElement($compile, $controller, $http, $injector, $q, $templateC
         });
     };
 }
+formStepElement.$inject = ["$compile", "$controller", "$http", "$injector", "$q", "$templateCache"];
 
 
 /**
@@ -709,6 +712,7 @@ function multiStepForm($q, $location, $rootScope) {
         return new MultiFormStep(searchId);
     };
 }
+multiStepForm.$inject = ["$q", "$location", "$rootScope"];
 
 
 /**

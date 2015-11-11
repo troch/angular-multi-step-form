@@ -124,4 +124,5 @@ function formStepElement($compile, $controller, $http, $injector, $q, $templateC
         });
     };
 }
+formStepElement.$inject = ["$compile", "$controller", "$http", "$injector", "$q", "$templateCache"];
 module.exports = exports['default'];

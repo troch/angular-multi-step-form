@@ -266,4 +266,5 @@ function multiStepForm($q, $location, $rootScope) {
         return new MultiFormStep(searchId);
     };
 }
+multiStepForm.$inject = ["$q", "$location", "$rootScope"];
 module.exports = exports['default'];

@@ -43,4 +43,5 @@ function formStepValidity($parse) {
         }
     };
 }
+formStepValidity.$inject = ["$parse"];
 module.exports = exports['default'];

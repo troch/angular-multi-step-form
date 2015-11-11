@@ -1,3 +1,12 @@
+<a name"1.2.3"></a>
+### 1.2.3 (2015-11-11)
+
+
+#### Bug Fixes
+
+* annotate distributed sources ([6d8a4c04](https://github.com/troch/angular-multi-step-form/commit/6d8a4c04))
+
+
 <a name"1.2.2"></a>
 ### 1.2.2 (2015-11-08)
 
