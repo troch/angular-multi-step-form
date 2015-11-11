@@ -6,6 +6,7 @@ var uglify       = require('gulp-uglify');
 var del          = require('del');
 var clog         = require('conventional-changelog');
 var concat       = require('gulp-concat');
+var ngAnnotate   = require('gulp-ng-annotate');
 var header       = require('gulp-header');
 var footer       = require('gulp-footer');
 var rename       = require('gulp-rename');
@@ -30,6 +31,7 @@ function buildBundle() {
         .pipe(concat('angular-multi-step-form.js'))
         .pipe(header(globalWrapper.header))
         .pipe(footer(globalWrapper.footer))
+        .pipe(ngAnnotate())
         .pipe(gulp.dest('dist/browser'))
         .pipe(uglify())
         .pipe(rename('angular-multi-step-form.min.js'))
@@ -41,6 +43,7 @@ function buildJs() {
         .pipe(jshint({ esnext: true }))
         .pipe(jshint.reporter())
         .pipe(babel({modules: 'common'}))
+        .pipe(ngAnnotate())
         .pipe(gulp.dest('dist/commonjs'));
 }
 
