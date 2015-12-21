@@ -1,4 +1,9 @@
 node_modules/
 bower_components/
 coverage/
+src/
+docs/
 npm-debug.log
+gulpfile.js
+bower.json
+karma.config.js
