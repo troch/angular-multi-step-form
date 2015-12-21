@@ -1,3 +1,13 @@
+<a name="1.2.5"></a>
+## [1.2.5](https://github.com/troch/angular-multi-step-form/compare/v1.2.4...v1.2.5) (2015-12-21)
+
+
+### Bug Fixes
+
+* Fix dev dependency issue with gulp ([6216723](https://github.com/troch/angular-multi-step-form/commit/6216723))
+
+
+
 <a name"1.2.4"></a>
 ### 1.2.4 (2015-11-11)
 
