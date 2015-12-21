@@ -19,7 +19,8 @@ exports['default'] = multiStepForm;
  */
 function multiStepForm($q, $location, $rootScope) {
     function MultiFormStep(searchId) {
-        var self = this;
+        var _this = this;
+
         /**
          * @ngdoc       property
          * @propertyOf  multiStepForm:multiStepForm
@@ -31,11 +32,11 @@ function multiStepForm($q, $location, $rootScope) {
         // If the search id is defined,
         if (angular.isDefined(searchId)) {
             $rootScope.$on('$locationChangeSuccess', function (event) {
-                var searchIndex = parseInt($location.search()[self.searchId]);
+                var searchIndex = parseInt($location.search()[_this.searchId]);
 
-                if (!isNaN(searchIndex) && self.activeIndex !== searchIndex) {
+                if (!isNaN(searchIndex) && _this.activeIndex !== searchIndex) {
                     // Synchronise
-                    self.setActiveIndex(parseInt(searchIndex));
+                    _this.setActiveIndex(parseInt(searchIndex));
                 }
             });
         }
@@ -130,7 +131,7 @@ function multiStepForm($q, $location, $rootScope) {
          * @param {Number} step The index to start with
          */
         this.setInitialIndex = function (initialStep) {
-            var searchIndex;
+            var searchIndex = undefined;
             // Initial step in markup has the priority
             // to override any manually entered URL
             if (angular.isDefined(initialStep)) {
@@ -138,7 +139,7 @@ function multiStepForm($q, $location, $rootScope) {
             }
             // Otherwise use search ID if applicable
             if (this.searchId) {
-                searchIndex = parseInt($location.search()[self.searchId]);
+                searchIndex = parseInt($location.search()[this.searchId]);
                 if (!isNaN(searchIndex)) {
                     return this.setActiveIndex(searchIndex);
                 }
@@ -254,10 +255,10 @@ function multiStepForm($q, $location, $rootScope) {
          * @param {Object} scope The scope to augment
          */
         this.augmentScope = function (scope) {
-            var self = this;
+            var _this2 = this;
 
             ['cancel', 'finish', 'getActiveIndex', 'setActiveIndex', 'getActiveStep', 'getSteps', 'nextStep', 'previousStep', 'isFirst', 'isLast', 'setValidity'].forEach(function (method) {
-                scope['$' + method] = self[method].bind(self);
+                scope['$' + method] = _this2[method].bind(_this2);
             });
         };
     }

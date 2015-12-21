@@ -14,7 +14,6 @@ export default multiStepForm;
  */
 function multiStepForm($q, $location, $rootScope) {
     function MultiFormStep(searchId) {
-        var self = this;
         /**
          * @ngdoc       property
          * @propertyOf  multiStepForm:multiStepForm
@@ -25,12 +24,12 @@ function multiStepForm($q, $location, $rootScope) {
         this.searchId = searchId;
         // If the search id is defined,
         if (angular.isDefined(searchId)) {
-            $rootScope.$on('$locationChangeSuccess', function (event) {
-                var searchIndex = parseInt($location.search()[self.searchId]);
+            $rootScope.$on('$locationChangeSuccess', (event) => {
+                const searchIndex = parseInt($location.search()[this.searchId]);
 
-                if (!isNaN(searchIndex) && self.activeIndex !== searchIndex) {
+                if (!isNaN(searchIndex) && this.activeIndex !== searchIndex) {
                     // Synchronise
-                    self.setActiveIndex(parseInt(searchIndex));
+                    this.setActiveIndex(parseInt(searchIndex));
                 }
             });
         }
@@ -125,7 +124,7 @@ function multiStepForm($q, $location, $rootScope) {
          * @param {Number} step The index to start with
          */
         this.setInitialIndex = function (initialStep) {
-            var searchIndex;
+            let searchIndex;
             // Initial step in markup has the priority
             // to override any manually entered URL
             if (angular.isDefined(initialStep)) {
@@ -133,7 +132,7 @@ function multiStepForm($q, $location, $rootScope) {
             }
             // Otherwise use search ID if applicable
             if (this.searchId) {
-                searchIndex =  parseInt($location.search()[self.searchId]);
+                searchIndex =  parseInt($location.search()[this.searchId]);
                 if (!isNaN(searchIndex)) {
                     return this.setActiveIndex(searchIndex);
                 }
@@ -234,7 +233,7 @@ function multiStepForm($q, $location, $rootScope) {
          * @description Go to the next step, if not the first step
          */
         this.setValidity = function (isValid, stepIndex) {
-            var step = this.steps[(stepIndex || this.activeIndex) - 1];
+            const step = this.steps[(stepIndex || this.activeIndex) - 1];
 
             if (step) {
                 step.valid = isValid;
@@ -250,12 +249,10 @@ function multiStepForm($q, $location, $rootScope) {
          * @param {Object} scope The scope to augment
          */
         this.augmentScope = function (scope) {
-            var self = this;
-
             ['cancel', 'finish', 'getActiveIndex', 'setActiveIndex', 'getActiveStep',
              'getSteps', 'nextStep', 'previousStep', 'isFirst', 'isLast', 'setValidity']
-                .forEach(function (method) {
-                    scope['$' + method] = self[method].bind(self);
+                .forEach((method) => {
+                    scope['$' + method] = this[method].bind(this);
                 });
         };
     }

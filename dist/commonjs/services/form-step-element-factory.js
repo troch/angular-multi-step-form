@@ -69,8 +69,8 @@ function formStepElement($compile, $controller, $http, $injector, $q, $templateC
     return function formStepElementFactory(formStep, multiStepFormInstance, multiStepFormScope) {
         var formStepElement = _angular2['default'].element('<div>').addClass('form-step');
 
-        var controller,
-            template,
+        var controller = undefined,
+            template = undefined,
             promisesHash = {};
 
         // Get template

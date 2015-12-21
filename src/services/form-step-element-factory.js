@@ -28,7 +28,7 @@ function formStepElement($compile, $controller, $http, $injector, $q, $templateC
                 formStep.template;
         }
         // Use templateUrl
-        var templateUrl =
+        const templateUrl =
             // If function or array, use $injector to get templateUrl value
             angular.isFunction(formStep.templateUrl) || angular.isArray(formStep.templateUrl) ?
             $injector.$invoke(formStep.templateUrl) :
@@ -45,7 +45,7 @@ function formStepElement($compile, $controller, $http, $injector, $q, $templateC
      * @return {Object} The form step scope
      */
     function getScope(scope, formStep, multiStepFormInstance) {
-        var stepScope = scope.$new(formStep.isolatedScope);
+        const stepScope = scope.$new(formStep.isolatedScope);
         // Augment scope with multi step form instance methods
         multiStepFormInstance.augmentScope(stepScope);
 
@@ -61,10 +61,10 @@ function formStepElement($compile, $controller, $http, $injector, $q, $templateC
      * @return {Promise}                      A promise containing the form step element
      */
     return function formStepElementFactory(formStep, multiStepFormInstance, multiStepFormScope) {
-        var formStepElement = angular.element('<div>')
+        const formStepElement = angular.element('<div>')
             .addClass('form-step');
 
-        var controller,
+        let controller,
             template,
             promisesHash = {};
 
@@ -89,7 +89,7 @@ function formStepElement($compile, $controller, $http, $injector, $q, $templateC
                 locals.$template = locals.$template.data || locals.$template;
                 formStepElement.html(locals.$template);
                 // Create scope
-                var formStepScope = getScope(multiStepFormScope, formStep, multiStepFormInstance);
+                const formStepScope = getScope(multiStepFormScope, formStep, multiStepFormInstance);
 
                 if (formStep.controller) {
                     // Create form step scope

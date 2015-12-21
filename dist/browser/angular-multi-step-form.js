@@ -117,31 +117,32 @@ function multiStepContainer($animate, $parse, $q, $log, multiStepForm, FormStep,
                 // Add .multi-step-container class
                 element.addClass('multi-step-container');
                 // Callbacks
-                var onFinish = attrs.onFinish ? $parse(attrs.onFinish).bind(scope, scope) : destroy,
-                    onCancel = attrs.onCancel ? $parse(attrs.onCancel).bind(scope, scope) : destroy,
-                    onStepChange = attrs.onStepChange ? $parse(attrs.onStepChange).bind(scope, scope) : angular.noop;
+                var onFinish = attrs.onFinish ? $parse(attrs.onFinish).bind(scope, scope) : destroy;
+                var onCancel = attrs.onCancel ? $parse(attrs.onCancel).bind(scope, scope) : destroy;
+                var onStepChange = attrs.onStepChange ? $parse(attrs.onStepChange).bind(scope, scope) : angular.noop;
                 // Step container (populated by child post link function)
-                var stepContainer = controller.stepContainer,
-                    multiStepFormInstance = multiStepForm(scope.$eval(attrs.searchId)),
-
+                var stepContainer = controller.stepContainer;
+                var multiStepFormInstance = multiStepForm(scope.$eval(attrs.searchId));
                 // Initial step
-                initialStep = scope.$eval(attrs.initialStep);
+                var initialStep = scope.$eval(attrs.initialStep);
 
-                var currentLeaveAnimation, currentEnterAnimation, currentStepScope, currentStepElement;
+                var currentLeaveAnimation = undefined,
+                    currentEnterAnimation = undefined,
+                    currentStepScope = undefined,
+                    currentStepElement = undefined;
 
                 // Augment scope
                 multiStepFormInstance.augmentScope(scope);
 
                 // Initialise and start the multi step form
                 multiStepFormInstance.start(scope.formSteps).then(onFinish, onCancel, function (data) {
-                    var step = data.newStep,
-                        previousStep = data.oldStep,
-                        direction = angular.isDefined(previousStep) ? step < previousStep ? 'step-backward' : 'step-forward' : 'step-initial';
+                    var step = data.newStep;
+                    var previousStep = data.oldStep;
+                    var direction = angular.isDefined(previousStep) ? step < previousStep ? 'step-backward' : 'step-forward' : 'step-initial';
 
-                    var formStep = scope.formSteps[step - 1],
-
+                    var formStep = scope.formSteps[step - 1];
                     // Create new step element (promise)
-                    newStepElement = formStepElement(formStep, multiStepFormInstance, scope);
+                    var newStepElement = formStepElement(formStep, multiStepFormInstance, scope);
 
                     // Add direction class to the parent container;
                     stepContainer.removeClass('step-forward step-backward step-initial').addClass(direction);
@@ -266,8 +267,8 @@ function formStepElement($compile, $controller, $http, $injector, $q, $templateC
     return function formStepElementFactory(formStep, multiStepFormInstance, multiStepFormScope) {
         var formStepElement = angular.element('<div>').addClass('form-step');
 
-        var controller,
-            template,
+        var controller = undefined,
+            template = undefined,
             promisesHash = {};
 
         // Get template
@@ -465,7 +466,8 @@ function FormStep() {
  */
 function multiStepForm($q, $location, $rootScope) {
     function MultiFormStep(searchId) {
-        var self = this;
+        var _this = this;
+
         /**
          * @ngdoc       property
          * @propertyOf  multiStepForm:multiStepForm
@@ -477,11 +479,11 @@ function multiStepForm($q, $location, $rootScope) {
         // If the search id is defined,
         if (angular.isDefined(searchId)) {
             $rootScope.$on('$locationChangeSuccess', function (event) {
-                var searchIndex = parseInt($location.search()[self.searchId]);
+                var searchIndex = parseInt($location.search()[_this.searchId]);
 
-                if (!isNaN(searchIndex) && self.activeIndex !== searchIndex) {
+                if (!isNaN(searchIndex) && _this.activeIndex !== searchIndex) {
                     // Synchronise
-                    self.setActiveIndex(parseInt(searchIndex));
+                    _this.setActiveIndex(parseInt(searchIndex));
                 }
             });
         }
@@ -576,7 +578,7 @@ function multiStepForm($q, $location, $rootScope) {
          * @param {Number} step The index to start with
          */
         this.setInitialIndex = function (initialStep) {
-            var searchIndex;
+            var searchIndex = undefined;
             // Initial step in markup has the priority
             // to override any manually entered URL
             if (angular.isDefined(initialStep)) {
@@ -584,7 +586,7 @@ function multiStepForm($q, $location, $rootScope) {
             }
             // Otherwise use search ID if applicable
             if (this.searchId) {
-                searchIndex = parseInt($location.search()[self.searchId]);
+                searchIndex = parseInt($location.search()[this.searchId]);
                 if (!isNaN(searchIndex)) {
                     return this.setActiveIndex(searchIndex);
                 }
@@ -700,10 +702,10 @@ function multiStepForm($q, $location, $rootScope) {
          * @param {Object} scope The scope to augment
          */
         this.augmentScope = function (scope) {
-            var self = this;
+            var _this2 = this;
 
             ['cancel', 'finish', 'getActiveIndex', 'setActiveIndex', 'getActiveStep', 'getSteps', 'nextStep', 'previousStep', 'isFirst', 'isLast', 'setValidity'].forEach(function (method) {
-                scope['$' + method] = self[method].bind(self);
+                scope['$' + method] = _this2[method].bind(_this2);
             });
         };
     }

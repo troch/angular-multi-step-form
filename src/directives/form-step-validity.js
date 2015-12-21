@@ -19,7 +19,7 @@ function formStepValidity($parse) {
         link: function postLink(scope, element, attrs, formCtrl) {
             // The callback to call when a change of validity
             // is detected
-            var validtyChangeCallback = attrs.formStepValidity ?
+            const validtyChangeCallback = attrs.formStepValidity ?
                 $parse(attrs.formStepValidity).bind(scope, scope) :
                 scope.$setValidity;
 

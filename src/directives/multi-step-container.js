@@ -86,16 +86,16 @@ function multiStepContainer($animate, $parse, $q, $log, multiStepForm, FormStep,
                 // Add .multi-step-container class
                 element.addClass('multi-step-container');
                 // Callbacks
-                var onFinish = attrs.onFinish ? $parse(attrs.onFinish).bind(scope, scope) : destroy,
-                    onCancel = attrs.onCancel ? $parse(attrs.onCancel).bind(scope, scope) : destroy,
-                    onStepChange = attrs.onStepChange ? $parse(attrs.onStepChange).bind(scope, scope) : angular.noop;
+                const onFinish = attrs.onFinish ? $parse(attrs.onFinish).bind(scope, scope) : destroy;
+                const onCancel = attrs.onCancel ? $parse(attrs.onCancel).bind(scope, scope) : destroy;
+                const onStepChange = attrs.onStepChange ? $parse(attrs.onStepChange).bind(scope, scope) : angular.noop;
                 // Step container (populated by child post link function)
-                var stepContainer = controller.stepContainer,
-                    multiStepFormInstance = multiStepForm(scope.$eval(attrs.searchId)),
+                const stepContainer = controller.stepContainer;
+                const multiStepFormInstance = multiStepForm(scope.$eval(attrs.searchId));
                     // Initial step
-                    initialStep = scope.$eval(attrs.initialStep);
+                const initialStep = scope.$eval(attrs.initialStep);
 
-                var currentLeaveAnimation,
+                let currentLeaveAnimation,
                     currentEnterAnimation,
                     currentStepScope,
                     currentStepElement;
@@ -107,15 +107,15 @@ function multiStepContainer($animate, $parse, $q, $log, multiStepForm, FormStep,
                 multiStepFormInstance
                     .start(scope.formSteps)
                     .then(onFinish, onCancel, function (data) {
-                        var step = data.newStep,
-                            previousStep = data.oldStep,
-                            direction = angular.isDefined(previousStep) ?
+                        const step = data.newStep;
+                        const previousStep = data.oldStep;
+                        const direction = angular.isDefined(previousStep) ?
                                    (step < previousStep  ? 'step-backward' : 'step-forward') :
                                    'step-initial';
 
-                        var formStep = scope.formSteps[step - 1],
+                        const formStep = scope.formSteps[step - 1];
                             // Create new step element (promise)
-                            newStepElement = formStepElement(formStep, multiStepFormInstance, scope);
+                        const newStepElement = formStepElement(formStep, multiStepFormInstance, scope);
 
                         // Add direction class to the parent container;
                         stepContainer
