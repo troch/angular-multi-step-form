@@ -16,7 +16,7 @@ export default multiStepContainer;
  *
  * @ngInject
  */
-function multiStepContainer($animate, $parse, $q, $log, multiStepForm, FormStep, formStepElement) {
+function multiStepContainer($animate, $q, $log, multiStepForm, FormStep, formStepElement) {
     return {
         restrict: 'EA',
         scope: true,
@@ -86,9 +86,9 @@ function multiStepContainer($animate, $parse, $q, $log, multiStepForm, FormStep,
                 // Add .multi-step-container class
                 element.addClass('multi-step-container');
                 // Callbacks
-                const onFinish = attrs.onFinish ? $parse(attrs.onFinish).bind(scope, scope) : destroy;
-                const onCancel = attrs.onCancel ? $parse(attrs.onCancel).bind(scope, scope) : destroy;
-                const onStepChange = attrs.onStepChange ? $parse(attrs.onStepChange).bind(scope, scope) : angular.noop;
+                const onFinish = attrs.onFinish ? () => scope.$eval(attrs.onFinish) : destroy;
+                const onCancel = attrs.onCancel ? () => scope.$eval(attrs.onCancel) : destroy;
+                const onStepChange = attrs.onStepChange ? () => scope.$eval(attrs.onStepChange) : angular.noop;
                 // Step container (populated by child post link function)
                 const stepContainer = controller.stepContainer;
                 const multiStepFormInstance = multiStepForm(scope.$eval(attrs.searchId));
