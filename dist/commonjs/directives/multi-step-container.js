@@ -26,7 +26,7 @@ exports['default'] = multiStepContainer;
  *
  * @ngInject
  */
-function multiStepContainer($animate, $parse, $q, $log, multiStepForm, FormStep, formStepElement) {
+function multiStepContainer($animate, $q, $log, multiStepForm, FormStep, formStepElement) {
     return {
         restrict: 'EA',
         scope: true,
@@ -93,9 +93,15 @@ function multiStepContainer($animate, $parse, $q, $log, multiStepForm, FormStep,
                 // Add .multi-step-container class
                 element.addClass('multi-step-container');
                 // Callbacks
-                var onFinish = attrs.onFinish ? $parse(attrs.onFinish).bind(scope, scope) : destroy;
-                var onCancel = attrs.onCancel ? $parse(attrs.onCancel).bind(scope, scope) : destroy;
-                var onStepChange = attrs.onStepChange ? $parse(attrs.onStepChange).bind(scope, scope) : _angular2['default'].noop;
+                var onFinish = attrs.onFinish ? function () {
+                    return scope.$eval(attrs.onFinish);
+                } : destroy;
+                var onCancel = attrs.onCancel ? function () {
+                    return scope.$eval(attrs.onCancel);
+                } : destroy;
+                var onStepChange = attrs.onStepChange ? function () {
+                    return scope.$eval(attrs.onStepChange);
+                } : _angular2['default'].noop;
                 // Step container (populated by child post link function)
                 var stepContainer = controller.stepContainer;
                 var multiStepFormInstance = multiStepForm(scope.$eval(attrs.searchId));
@@ -158,5 +164,5 @@ function multiStepContainer($animate, $parse, $q, $log, multiStepForm, FormStep,
         }
     };
 }
-multiStepContainer.$inject = ["$animate", "$parse", "$q", "$log", "multiStepForm", "FormStep", "formStepElement"];
+multiStepContainer.$inject = ["$animate", "$q", "$log", "multiStepForm", "FormStep", "formStepElement"];
 module.exports = exports['default'];
