@@ -21,4 +21,4 @@ You can configure steps to have an isolate scope by setting the `isolatedScope` 
 will still be augmented with the helpers described above.
 
 When a step has an isolated scope, `multiStepFormScope` can be injected into your controller, in order to be
-able to access data from outside your step. See [saving data example](http://localhost:8080/angular-multi-step-form/#/saving-data).
+able to access data from outside your step. See [saving data example](http://blog.reactandbethankful.com/angular-multi-step-form/#/saving-data).
