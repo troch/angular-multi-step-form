@@ -1,3 +1,23 @@
+<a name="1.2.8"></a>
+## [1.2.8](https://github.com/troch/angular-multi-step-form/compare/v1.2.7...v1.2.8) (2016-02-27)
+
+
+### Bug Fixes
+
+* Resolve multi step instance promise on destroy ([cb56567](https://github.com/troch/angular-multi-step-form/commit/cb56567))
+
+
+
+<a name="1.2.7"></a>
+## [1.2.7](https://github.com/troch/angular-multi-step-form/compare/v1.2.6...v1.2.7) (2015-12-30)
+
+
+### Bug Fixes
+
+* fix issue with invoking custom callbacks with angular 1.4+ ([c2a7f8e](https://github.com/troch/angular-multi-step-form/commit/c2a7f8e))
+
+
+
 <a name="1.2.5"></a>
 ## [1.2.5](https://github.com/troch/angular-multi-step-form/compare/v1.2.4...v1.2.5) (2015-12-21)
 

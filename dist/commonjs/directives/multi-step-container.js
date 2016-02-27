@@ -116,6 +116,11 @@ function multiStepContainer($animate, $q, $log, multiStepForm, FormStep, formSte
                 // Augment scope
                 multiStepFormInstance.augmentScope(scope);
 
+                // Resolve any outstanding promises on destroy
+                scope.$on('$destroy', function () {
+                    multiStepFormInstance.deferred.resolve();
+                });
+
                 // Initialise and start the multi step form
                 multiStepFormInstance.start(scope.formSteps).then(onFinish, onCancel, function (data) {
                     var step = data.newStep;
