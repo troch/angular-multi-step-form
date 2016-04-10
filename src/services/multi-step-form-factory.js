@@ -218,7 +218,7 @@ function multiStepForm($q, $location, $rootScope) {
          * @ngdoc       method
          * @methodOf    multiStepForm:multiStepForm
          *
-         * @description Go to the next step, if not the first step
+         * @description Go to the previous step, if not the first step
          */
         this.previousStep = function () {
             if (!this.isFirst()) {
