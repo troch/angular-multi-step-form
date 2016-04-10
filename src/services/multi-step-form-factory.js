@@ -47,6 +47,15 @@ function multiStepForm($q, $location, $rootScope) {
          * @ngdoc       property
          * @propertyOf  multiStepForm:multiStepForm
          *
+         * @description History of the steps
+         * @type {Array}
+         */
+        this.history = [];
+
+        /**
+         * @ngdoc       property
+         * @propertyOf  multiStepForm:multiStepForm
+         *
          * @description Return the form steps
          * @return {Array}
          */
@@ -158,6 +167,10 @@ function multiStepForm($q, $location, $rootScope) {
                     $location.search(this.searchId, step).replace();
                 }
             }
+            // Add the old step in the history
+            if (this.activeIndex) {
+                this.history.push(this.activeIndex);
+            }
             // Notify deferred object
             this.deferred.notify({
                 newStep: step,
@@ -230,6 +243,18 @@ function multiStepForm($q, $location, $rootScope) {
          * @ngdoc       method
          * @methodOf    multiStepForm:multiStepForm
          *
+         * @description Back to the previous step in history, if not the initial step
+         */
+        this.backStep = function () {
+            if (this.history.length > 0) {
+                this.setActiveIndex(this.history.pop());
+            }
+        };
+
+        /**
+         * @ngdoc       method
+         * @methodOf    multiStepForm:multiStepForm
+         *
          * @description Go to the next step, if not the first step
          */
         this.setValidity = function (isValid, stepIndex) {
@@ -250,7 +275,7 @@ function multiStepForm($q, $location, $rootScope) {
          */
         this.augmentScope = function (scope) {
             ['cancel', 'finish', 'getActiveIndex', 'setActiveIndex', 'getActiveStep',
-             'getSteps', 'nextStep', 'previousStep', 'isFirst', 'isLast', 'setValidity']
+             'getSteps', 'nextStep', 'previousStep', 'backStep', 'isFirst', 'isLast', 'setValidity']
                 .forEach((method) => {
                     scope['$' + method] = this[method].bind(this);
                 });
