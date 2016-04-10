@@ -78,6 +78,16 @@ describe('multiStepForm factory:', function () {
             expect(multiStepFormInstance.getActiveIndex()).toEqual(1);
         });
 
+        it('can go to the previous step in history', function () {
+            multiStepFormInstance.setActiveIndex(3);
+            multiStepFormInstance.backStep();
+            expect(multiStepFormInstance.getActiveIndex()).toEqual(1);
+            expect(multiStepFormInstance.isFirst()).toBe(true);
+            multiStepFormInstance.setActiveIndex(5);
+            multiStepFormInstance.backStep();
+            expect(multiStepFormInstance.getActiveIndex()).toEqual(1);
+        });
+
         it('should return the list of steps', function () {
             expect(multiStepFormInstance.getSteps().length).toEqual(5)
         });
