@@ -1,3 +1,13 @@
+<a name="1.2.9"></a>
+## [1.2.9](https://github.com/troch/angular-multi-step-form/compare/v1.2.8...v1.2.9) (2016-05-17)
+
+
+### Bug Fixes
+
+* reject multi step promise when scope is destroyed ([9968704](https://github.com/troch/angular-multi-step-form/commit/9968704)), closes [#41](https://github.com/troch/angular-multi-step-form/issues/41)
+
+
+
 <a name="1.2.8"></a>
 ## [1.2.8](https://github.com/troch/angular-multi-step-form/compare/v1.2.7...v1.2.8) (2016-02-27)
 

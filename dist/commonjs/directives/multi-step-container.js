@@ -76,10 +76,6 @@ function multiStepContainer($animate, $q, $log, multiStepForm, FormStep, formSte
                 });
             },
             post: function postLink(scope, element, attrs, controller) {
-                function destroy() {
-                    $animate.leave(element);
-                    scope.$destroy();
-                }
                 // Check that a step container has been defined
                 if (attrs.useFooter !== undefined) {
                     $log.warn('useFooter attribute is no longer supported. Instead you need to define were you want your steps to be added.');
@@ -93,12 +89,8 @@ function multiStepContainer($animate, $q, $log, multiStepForm, FormStep, formSte
                 // Add .multi-step-container class
                 element.addClass('multi-step-container');
                 // Callbacks
-                var onFinish = attrs.onFinish ? function () {
-                    return scope.$eval(attrs.onFinish);
-                } : destroy;
-                var onCancel = attrs.onCancel ? function () {
-                    return scope.$eval(attrs.onCancel);
-                } : destroy;
+                var onFinish = attrs.onFinish ? resolve(attrs.onFinish) : defaultResolve;
+                var onCancel = attrs.onCancel ? resolve(attrs.onCancel) : defaultResolve;
                 var onStepChange = attrs.onStepChange ? function () {
                     return scope.$eval(attrs.onStepChange);
                 } : _angular2['default'].noop;
@@ -111,14 +103,18 @@ function multiStepContainer($animate, $q, $log, multiStepForm, FormStep, formSte
                 var currentLeaveAnimation = undefined,
                     currentEnterAnimation = undefined,
                     currentStepScope = undefined,
-                    currentStepElement = undefined;
+                    currentStepElement = undefined,
+                    isDeferredResolved = false;
 
                 // Augment scope
                 multiStepFormInstance.augmentScope(scope);
 
                 // Resolve any outstanding promises on destroy
                 scope.$on('$destroy', function () {
-                    multiStepFormInstance.deferred.resolve();
+                    if (!isDeferredResolved) {
+                        isDeferredResolved = true;
+                        multiStepFormInstance.deferred.reject();
+                    }
                 });
 
                 // Initialise and start the multi step form
@@ -165,6 +161,21 @@ function multiStepContainer($animate, $q, $log, multiStepForm, FormStep, formSte
 
                 // Initialise currentStep
                 multiStepFormInstance.setInitialIndex(initialStep);
+
+                // Default resolution function
+                function defaultResolve() {
+                    $animate.leave(element);
+                    isDeferredResolved = true;
+                    scope.$destroy();
+                }
+
+                // On promise resolution
+                function resolve(fn) {
+                    return function () {
+                        isDeferredResolved = true;
+                        scope.$eval(fn);
+                    };
+                }
             }
         }
     };
