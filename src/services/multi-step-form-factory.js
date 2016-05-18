@@ -47,6 +47,15 @@ function multiStepForm($q, $location, $rootScope) {
          * @ngdoc       property
          * @propertyOf  multiStepForm:multiStepForm
          *
+         * @description History of the steps
+         * @type {Array}
+         */
+        this.history = [];
+
+        /**
+         * @ngdoc       property
+         * @propertyOf  multiStepForm:multiStepForm
+         *
          * @description Return the form steps
          * @return {Array}
          */
@@ -148,7 +157,7 @@ function multiStepForm($q, $location, $rootScope) {
          * @description Set the current step to the provided value and notify
          * @param {Number} step The step index (starting at 1)
          */
-        this.setActiveIndex = function (step) {
+        this.setActiveIndex = function (step, pushToHistory = true) {
             if (this.searchId) {
                 // Update $location
                 if (this.activeIndex) {
@@ -157,6 +166,10 @@ function multiStepForm($q, $location, $rootScope) {
                     // Replace current one
                     $location.search(this.searchId, step).replace();
                 }
+            }
+            // Add the old step in the history
+            if (pushToHistory && this.activeIndex) {
+                this.history.push(this.activeIndex);
             }
             // Notify deferred object
             this.deferred.notify({
@@ -218,11 +231,23 @@ function multiStepForm($q, $location, $rootScope) {
          * @ngdoc       method
          * @methodOf    multiStepForm:multiStepForm
          *
-         * @description Go to the next step, if not the first step
+         * @description Go to the previous step, if not the first step
          */
         this.previousStep = function () {
             if (!this.isFirst()) {
                 this.setActiveIndex(this.activeIndex - 1);
+            }
+        };
+
+        /**
+         * @ngdoc       method
+         * @methodOf    multiStepForm:multiStepForm
+         *
+         * @description Back to the previous step in history, if not the initial step
+         */
+        this.lastVisitedStep = function () {
+            if (this.history.length > 0) {
+                this.setActiveIndex(this.history.pop(), false);
             }
         };
 
@@ -250,7 +275,7 @@ function multiStepForm($q, $location, $rootScope) {
          */
         this.augmentScope = function (scope) {
             ['cancel', 'finish', 'getActiveIndex', 'setActiveIndex', 'getActiveStep',
-             'getSteps', 'nextStep', 'previousStep', 'isFirst', 'isLast', 'setValidity']
+             'getSteps', 'nextStep', 'previousStep', 'lastVisitedStep', 'isFirst', 'isLast', 'setValidity']
                 .forEach((method) => {
                     scope['$' + method] = this[method].bind(this);
                 });
