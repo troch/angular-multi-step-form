@@ -1,5 +1,6 @@
 'use strict';
 
+formStepElement.$inject = ["$compile", "$controller", "$http", "$injector", "$q", "$templateCache"];
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
@@ -124,5 +125,4 @@ function formStepElement($compile, $controller, $http, $injector, $q, $templateC
         });
     };
 }
-formStepElement.$inject = ["$compile", "$controller", "$http", "$injector", "$q", "$templateCache"];
 module.exports = exports['default'];

@@ -1,5 +1,6 @@
 'use strict';
 
+multiStepContainer.$inject = ["$animate", "$q", "$log", "multiStepForm", "FormStep", "formStepElement"];
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
@@ -169,5 +170,4 @@ function multiStepContainer($animate, $q, $log, multiStepForm, FormStep, formSte
         }
     };
 }
-multiStepContainer.$inject = ["$animate", "$q", "$log", "multiStepForm", "FormStep", "formStepElement"];
 module.exports = exports['default'];

@@ -12,6 +12,10 @@
  *
  * @ngInject
  */
+formStepValidity.$inject = ["$parse"];
+multiStepContainer.$inject = ["$animate", "$q", "$log", "multiStepForm", "FormStep", "formStepElement"];
+formStepElement.$inject = ["$compile", "$controller", "$http", "$injector", "$q", "$templateCache"];
+multiStepForm.$inject = ["$q", "$location", "$rootScope"];
 function formStepValidity($parse) {
     return {
         restrict: 'A',
@@ -33,7 +37,6 @@ function formStepValidity($parse) {
         }
     };
 }
-formStepValidity.$inject = ["$parse"];
 
 
 /**
@@ -193,7 +196,6 @@ function multiStepContainer($animate, $q, $log, multiStepForm, FormStep, formSte
         }
     };
 }
-multiStepContainer.$inject = ["$animate", "$q", "$log", "multiStepForm", "FormStep", "formStepElement"];
 
 
 /**
@@ -333,7 +335,6 @@ function formStepElement($compile, $controller, $http, $injector, $q, $templateC
         });
     };
 }
-formStepElement.$inject = ["$compile", "$controller", "$http", "$injector", "$q", "$templateCache"];
 
 
 /**
@@ -512,6 +513,15 @@ function multiStepForm($q, $location, $rootScope) {
          * @ngdoc       property
          * @propertyOf  multiStepForm:multiStepForm
          *
+         * @description History of the steps
+         * @type {Array}
+         */
+        this.history = [];
+
+        /**
+         * @ngdoc       property
+         * @propertyOf  multiStepForm:multiStepForm
+         *
          * @description Return the form steps
          * @return {Array}
          */
@@ -614,6 +624,8 @@ function multiStepForm($q, $location, $rootScope) {
          * @param {Number} step The step index (starting at 1)
          */
         this.setActiveIndex = function (step) {
+            var pushToHistory = arguments.length <= 1 || arguments[1] === undefined ? true : arguments[1];
+
             if (this.searchId) {
                 // Update $location
                 if (this.activeIndex) {
@@ -622,6 +634,10 @@ function multiStepForm($q, $location, $rootScope) {
                     // Replace current one
                     $location.search(this.searchId, step).replace();
                 }
+            }
+            // Add the old step in the history
+            if (pushToHistory && this.activeIndex) {
+                this.history.push(this.activeIndex);
             }
             // Notify deferred object
             this.deferred.notify({
@@ -683,11 +699,23 @@ function multiStepForm($q, $location, $rootScope) {
          * @ngdoc       method
          * @methodOf    multiStepForm:multiStepForm
          *
-         * @description Go to the next step, if not the first step
+         * @description Go to the previous step, if not the first step
          */
         this.previousStep = function () {
             if (!this.isFirst()) {
                 this.setActiveIndex(this.activeIndex - 1);
+            }
+        };
+
+        /**
+         * @ngdoc       method
+         * @methodOf    multiStepForm:multiStepForm
+         *
+         * @description Back to the previous step in history, if not the initial step
+         */
+        this.lastVisitedStep = function () {
+            if (this.history.length > 0) {
+                this.setActiveIndex(this.history.pop(), false);
             }
         };
 
@@ -715,7 +743,7 @@ function multiStepForm($q, $location, $rootScope) {
         this.augmentScope = function (scope) {
             var _this2 = this;
 
-            ['cancel', 'finish', 'getActiveIndex', 'setActiveIndex', 'getActiveStep', 'getSteps', 'nextStep', 'previousStep', 'isFirst', 'isLast', 'setValidity'].forEach(function (method) {
+            ['cancel', 'finish', 'getActiveIndex', 'setActiveIndex', 'getActiveStep', 'getSteps', 'nextStep', 'previousStep', 'lastVisitedStep', 'isFirst', 'isLast', 'setValidity'].forEach(function (method) {
                 scope['$' + method] = _this2[method].bind(_this2);
             });
         };
@@ -725,7 +753,6 @@ function multiStepForm($q, $location, $rootScope) {
         return new MultiFormStep(searchId);
     };
 }
-multiStepForm.$inject = ["$q", "$location", "$rootScope"];
 
 
 /**

@@ -1,5 +1,6 @@
 'use strict';
 
+formStepValidity.$inject = ["$parse"];
 Object.defineProperty(exports, '__esModule', {
     value: true
 });
@@ -43,5 +44,4 @@ function formStepValidity($parse) {
         }
     };
 }
-formStepValidity.$inject = ["$parse"];
 module.exports = exports['default'];
