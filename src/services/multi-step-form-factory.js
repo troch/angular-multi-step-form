@@ -157,7 +157,7 @@ function multiStepForm($q, $location, $rootScope) {
          * @description Set the current step to the provided value and notify
          * @param {Number} step The step index (starting at 1)
          */
-        this.setActiveIndex = function (step, isBackStep) {
+        this.setActiveIndex = function (step, pushToHistory = true) {
             if (this.searchId) {
                 // Update $location
                 if (this.activeIndex) {
@@ -168,7 +168,7 @@ function multiStepForm($q, $location, $rootScope) {
                 }
             }
             // Add the old step in the history
-            if (!isBackStep && this.activeIndex) {
+            if (pushToHistory && this.activeIndex) {
                 this.history.push(this.activeIndex);
             }
             // Notify deferred object
@@ -245,9 +245,9 @@ function multiStepForm($q, $location, $rootScope) {
          *
          * @description Back to the previous step in history, if not the initial step
          */
-        this.backStep = function () {
+        this.lastVisitedStep = function () {
             if (this.history.length > 0) {
-                this.setActiveIndex(this.history.pop(), true);
+                this.setActiveIndex(this.history.pop(), false);
             }
         };
 
@@ -275,7 +275,7 @@ function multiStepForm($q, $location, $rootScope) {
          */
         this.augmentScope = function (scope) {
             ['cancel', 'finish', 'getActiveIndex', 'setActiveIndex', 'getActiveStep',
-             'getSteps', 'nextStep', 'previousStep', 'backStep', 'isFirst', 'isLast', 'setValidity']
+             'getSteps', 'nextStep', 'previousStep', 'lastVisitedStep', 'isFirst', 'isLast', 'setValidity']
                 .forEach((method) => {
                     scope['$' + method] = this[method].bind(this);
                 });
