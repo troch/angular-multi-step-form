@@ -255,6 +255,16 @@ function multiStepForm($q, $location, $rootScope) {
          * @ngdoc       method
          * @methodOf    multiStepForm:multiStepForm
          *
+         * @description Clean history
+         */
+        this.cleanHistory = function () {
+            this.history = [];
+        };
+
+        /**
+         * @ngdoc       method
+         * @methodOf    multiStepForm:multiStepForm
+         *
          * @description Go to the next step, if not the first step
          */
         this.setValidity = function (isValid, stepIndex) {
@@ -275,7 +285,7 @@ function multiStepForm($q, $location, $rootScope) {
          */
         this.augmentScope = function (scope) {
             ['cancel', 'finish', 'getActiveIndex', 'setActiveIndex', 'getActiveStep',
-             'getSteps', 'nextStep', 'previousStep', 'lastVisitedStep', 'isFirst', 'isLast', 'setValidity']
+             'getSteps', 'nextStep', 'previousStep', 'lastVisitedStep', 'cleanHistory', 'isFirst', 'isLast', 'setValidity']
                 .forEach((method) => {
                     scope['$' + method] = this[method].bind(this);
                 });
