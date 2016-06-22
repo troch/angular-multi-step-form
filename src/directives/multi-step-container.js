@@ -7,6 +7,7 @@ export default multiStepContainer;
  * @name     multiStepForm:multiStepContainer
  *
  * @requires $scope
+ * @requires $q
  * @requires multiStepForm:multiStepForm
  * @requires multiStepForm:FormStep
  * @requires multiStepForm:formStepElement
@@ -16,7 +17,7 @@ export default multiStepContainer;
  *
  * @ngInject
  */
-function multiStepContainer($animate, $q, $log, multiStepForm, FormStep, formStepElement) {
+function multiStepContainer($animate, $q, multiStepForm, FormStep, formStepElement) {
     return {
         restrict: 'EA',
         scope: true,
@@ -69,16 +70,6 @@ function multiStepContainer($animate, $q, $log, multiStepForm, FormStep, formSte
                 });
             },
             post: function postLink(scope, element, attrs, controller) {
-                // Check that a step container has been defined
-                if (attrs.useFooter !== undefined) {
-                    $log.warn('useFooter attribute is no longer supported. Instead you need to define were you want your steps to be added.');
-                }
-                if (controller.stepContainer === undefined) {
-                    $log.warn('You need to define a step container, using the stepContainer directive (element and attribute supported).');
-                    $log.warn('See changelog: https://github.com/troch/angular-multi-step-form/blob/master/CHANGELOG.md');
-                    $log.warn('See migration guide: https://github.com/troch/angular-multi-step-form/blob/master/docs/migrating-to-1.1.x.md');
-                    throw new Error('Step container not found');
-                }
                 // Add .multi-step-container class
                 element.addClass('multi-step-container');
                 // Callbacks
