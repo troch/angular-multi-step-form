@@ -1,0 +1,10 @@
+.*
+node_modules
+*.log
+*.md
+*.json
+karma.config.js
+bower_components
+docs
+src
+tests
