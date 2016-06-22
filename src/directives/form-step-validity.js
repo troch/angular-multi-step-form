@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default formStepValidity;
+export default [ '$parse', formStepValidity ];
 
 /**
  * @ngdoc    directive
@@ -9,8 +9,6 @@ export default formStepValidity;
  * @restrict A
  * @description Notify the multi step form instance of a change of validity of a step.
  *              This directive can be used on a form element or within a form.
- *
- * @ngInject
  */
 function formStepValidity($parse) {
     return {

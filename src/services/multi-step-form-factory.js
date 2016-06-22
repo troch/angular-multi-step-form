@@ -1,4 +1,4 @@
-export default multiStepForm;
+export default [ '$q', '$location', '$rootScope', multiStepForm ];
 
 /**
  * @ngdoc       function
@@ -9,8 +9,6 @@ export default multiStepForm;
  *
  * @description A service returning an instance per multi step form.
  *              The instance of the service is injected in each step controller.
- *
- * @ngInject
  */
 function multiStepForm($q, $location, $rootScope) {
     function MultiFormStep(searchId) {

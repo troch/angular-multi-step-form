@@ -9,8 +9,6 @@ export default stepContainer;
  * @restrict A
  * @description The container for form steps. It registers itself with the multi step container.
  *              {@link multiStepForm:multiStepContainer multiStepContainer}
- *
- * @ngInject
  */
 function stepContainer() {
     return {

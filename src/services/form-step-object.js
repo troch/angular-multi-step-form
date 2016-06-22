@@ -6,8 +6,6 @@ export default FormStep;
  *
  * @description A constructor for creating form steps
  * @error       If no template or templateUrl properties are supplied
- *
- * @ngInject
  */
 function FormStep() {
   return function FormStep (config) {

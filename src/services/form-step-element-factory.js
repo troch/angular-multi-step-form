@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default formStepElement;
+export default [ '$compile', '$controller', '$http', '$injector', '$q', '$templateCache', formStepElement ];
 
 /**
  * @ngdoc   function
@@ -11,8 +11,6 @@ export default formStepElement;
  *
  * @description A factory function for creating form step elements
  *              (using controller, template and resolve)
- *
- * @ngInject
  */
 function formStepElement($compile, $controller, $http, $injector, $q, $templateCache) {
     /**

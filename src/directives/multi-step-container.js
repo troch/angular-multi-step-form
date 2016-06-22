@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default multiStepContainer;
+export default [ '$animate', '$q', 'multiStepForm', 'FormStep', 'formStepElement', multiStepContainer ];
 
 /**
  * @ngdoc    directive
@@ -14,8 +14,6 @@ export default multiStepContainer;
  *
  * @scope
  * @description Multi step directive (overall container)
- *
- * @ngInject
  */
 function multiStepContainer($animate, $q, multiStepForm, FormStep, formStepElement) {
     return {
