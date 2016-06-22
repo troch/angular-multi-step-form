@@ -79,15 +79,6 @@ describe('multiStepContainer directive:', function() {
         }).toThrow();
     });
 
-    it('should warn the user if userFooter is used (migration)', function () {
-        var element = angular.element('<multi-step-container steps="steps" use-footer/>')
-            .append('<main step-container></main>');
-        spyOn($log, 'warn');
-        $compile(element)(scope);
-        $rootScope.$digest();
-        expect($log.warn).toHaveBeenCalled();
-    });
-
     it('should start on the first step by default', function () {
         element = compileDirective();
         expect(element.children().eq(0).html()).toContain('Step 1');
