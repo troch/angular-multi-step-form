@@ -146,7 +146,7 @@ function multiStepContainer($animate, $q, $log, multiStepForm, FormStep, formSte
                         // Enter new step when new step element is ready
                         newStepElement
                             .then(function (step) {
-                                onStepChange();
+                                onStepChange(step);
                                 currentStepScope = step.scope;
                                 currentStepElement = step.element;
                                 currentStepElement.scrollTop = 0;
