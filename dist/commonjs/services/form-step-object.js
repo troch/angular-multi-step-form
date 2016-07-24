@@ -1,9 +1,9 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports['default'] = FormStep;
+exports.default = FormStep;
 
 /**
  * @ngdoc       object
@@ -11,9 +11,8 @@ exports['default'] = FormStep;
  *
  * @description A constructor for creating form steps
  * @error       If no template or templateUrl properties are supplied
- *
- * @ngInject
  */
+
 function FormStep() {
   return function FormStep(config) {
     if (!config.template && !config.templateUrl) {
@@ -130,4 +129,3 @@ function FormStep() {
     this.visited = false;
   };
 }
-module.exports = exports['default'];

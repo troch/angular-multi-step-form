@@ -1,9 +1,9 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports['default'] = stepContainer;
+exports.default = stepContainer;
 
 /**
  * @ngdoc    directive
@@ -14,9 +14,8 @@ exports['default'] = stepContainer;
  * @restrict A
  * @description The container for form steps. It registers itself with the multi step container.
  *              {@link multiStepForm:multiStepContainer multiStepContainer}
- *
- * @ngInject
  */
+
 function stepContainer() {
     return {
         restrict: 'EA',
@@ -28,4 +27,3 @@ function stepContainer() {
         }
     };
 }
-module.exports = exports['default'];

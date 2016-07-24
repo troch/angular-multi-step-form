@@ -1,3 +1,13 @@
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/troch/angular-multi-step-form/compare/v1.2.9...v1.3.0) (2016-07-24)
+
+
+### Features
+
+* add support for directive level controller ([7fa5587](https://github.com/troch/angular-multi-step-form/commit/7fa5587))
+
+
+
 <a name="1.2.9"></a>
 ## [1.2.9](https://github.com/troch/angular-multi-step-form/compare/v1.2.8...v1.2.9) (2016-05-17)
 

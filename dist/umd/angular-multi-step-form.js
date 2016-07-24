@@ -1,5 +1,8 @@
-var angularMultiStepForm = (function (angular$1) {
-  'use strict';
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('angular')) :
+  typeof define === 'function' && define.amd ? define('angularMultiStepForm', ['angular'], factory) :
+  (global.angularMultiStepForm = factory(global.angular));
+}(this, function (angular$1) { 'use strict';
 
   angular$1 = 'default' in angular$1 ? angular$1['default'] : angular$1;
 
@@ -742,4 +745,4 @@ var angularMultiStepForm = (function (angular$1) {
 
   return multiStepFormModule;
 
-}(angular));
+}));

@@ -1,16 +1,16 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _angular = require('angular');
 
 var _angular2 = _interopRequireDefault(_angular);
 
-exports['default'] = formStepValidity;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = ['$parse', formStepValidity];
 
 /**
  * @ngdoc    directive
@@ -19,9 +19,8 @@ exports['default'] = formStepValidity;
  * @restrict A
  * @description Notify the multi step form instance of a change of validity of a step.
  *              This directive can be used on a form element or within a form.
- *
- * @ngInject
  */
+
 function formStepValidity($parse) {
     return {
         restrict: 'A',
@@ -36,12 +35,10 @@ function formStepValidity($parse) {
                 return formCtrl.$valid;
             }, function (val) {
                 // Check if defined
-                if (_angular2['default'].isDefined(val)) {
+                if (_angular2.default.isDefined(val)) {
                     validtyChangeCallback(val);
                 }
             });
         }
     };
 }
-formStepValidity.$inject = ["$parse"];
-module.exports = exports['default'];

@@ -1,16 +1,16 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _angular = require('angular');
 
 var _angular2 = _interopRequireDefault(_angular);
 
-exports['default'] = formStepElement;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = ['$compile', '$controller', '$http', '$injector', '$q', '$templateCache', formStepElement];
 
 /**
  * @ngdoc   function
@@ -21,9 +21,8 @@ exports['default'] = formStepElement;
  *
  * @description A factory function for creating form step elements
  *              (using controller, template and resolve)
- *
- * @ngInject
  */
+
 function formStepElement($compile, $controller, $http, $injector, $q, $templateCache) {
     /**
      * Resolve the template of a form step
@@ -33,12 +32,12 @@ function formStepElement($compile, $controller, $http, $injector, $q, $templateC
     function resolveTemplate(formStep) {
         if (formStep.template) {
             // If function or array, use $injector to get template value
-            return _angular2['default'].isFunction(formStep.template) || _angular2['default'].isArray(formStep.template) ? $injector.$invoke(formStep.template) : formStep.template;
+            return _angular2.default.isFunction(formStep.template) || _angular2.default.isArray(formStep.template) ? $injector.$invoke(formStep.template) : formStep.template;
         }
         // Use templateUrl
         var templateUrl =
         // If function or array, use $injector to get templateUrl value
-        _angular2['default'].isFunction(formStep.templateUrl) || _angular2['default'].isArray(formStep.templateUrl) ? $injector.$invoke(formStep.templateUrl) : formStep.templateUrl;
+        _angular2.default.isFunction(formStep.templateUrl) || _angular2.default.isArray(formStep.templateUrl) ? $injector.$invoke(formStep.templateUrl) : formStep.templateUrl;
         // Request templateUrl using $templateCache
         return $http.get(templateUrl, { cache: $templateCache });
     }
@@ -67,17 +66,17 @@ function formStepElement($compile, $controller, $http, $injector, $q, $templateC
      * @return {Promise}                      A promise containing the form step element
      */
     return function formStepElementFactory(formStep, multiStepFormInstance, multiStepFormScope) {
-        var formStepElement = _angular2['default'].element('<div>').addClass('form-step');
+        var formStepElement = _angular2.default.element('<div>').addClass('form-step');
 
-        var controller = undefined,
-            template = undefined,
+        var controller = void 0,
+            template = void 0,
             promisesHash = {};
 
         // Get template
         promisesHash.$template = resolveTemplate(formStep);
 
         // Get resolve
-        _angular2['default'].forEach(formStep.resolve, function (resolveVal, resolveName) {
+        _angular2.default.forEach(formStep.resolve, function (resolveVal, resolveName) {
             promisesHash[resolveName] =
             // angular.isString(resolveVal) ?
             // $injector.get(resolveVal) :
@@ -87,7 +86,7 @@ function formStepElement($compile, $controller, $http, $injector, $q, $templateC
         // After all locals are resolved (template and "resolves") //
         return $q.all(promisesHash).then(function (locals) {
             // Extend formStep locals with resolved locals
-            locals = _angular2['default'].extend({}, formStep.locals, locals);
+            locals = _angular2.default.extend({}, formStep.locals, locals);
             // Load template inside element
             locals.$template = locals.$template.data || locals.$template;
             formStepElement.html(locals.$template);
@@ -124,5 +123,3 @@ function formStepElement($compile, $controller, $http, $injector, $q, $templateC
         });
     };
 }
-formStepElement.$inject = ["$compile", "$controller", "$http", "$injector", "$q", "$templateCache"];
-module.exports = exports['default'];

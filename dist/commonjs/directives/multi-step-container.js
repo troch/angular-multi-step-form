@@ -1,32 +1,33 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _angular = require('angular');
 
 var _angular2 = _interopRequireDefault(_angular);
 
-exports['default'] = multiStepContainer;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = ['$animate', '$q', '$controller', 'multiStepForm', 'FormStep', 'formStepElement', multiStepContainer];
 
 /**
  * @ngdoc    directive
  * @name     multiStepForm:multiStepContainer
  *
  * @requires $scope
+ * @requires $q
+ * @requires $controller
  * @requires multiStepForm:multiStepForm
  * @requires multiStepForm:FormStep
  * @requires multiStepForm:formStepElement
  *
  * @scope
  * @description Multi step directive (overall container)
- *
- * @ngInject
  */
-function multiStepContainer($animate, $q, $log, multiStepForm, FormStep, formStepElement) {
+
+function multiStepContainer($animate, $q, $controller, multiStepForm, FormStep, formStepElement) {
     return {
         restrict: 'EA',
         scope: true,
@@ -76,16 +77,6 @@ function multiStepContainer($animate, $q, $log, multiStepForm, FormStep, formSte
                 });
             },
             post: function postLink(scope, element, attrs, controller) {
-                // Check that a step container has been defined
-                if (attrs.useFooter !== undefined) {
-                    $log.warn('useFooter attribute is no longer supported. Instead you need to define were you want your steps to be added.');
-                }
-                if (controller.stepContainer === undefined) {
-                    $log.warn('You need to define a step container, using the stepContainer directive (element and attribute supported).');
-                    $log.warn('See changelog: https://github.com/troch/angular-multi-step-form/blob/master/CHANGELOG.md');
-                    $log.warn('See migration guide: https://github.com/troch/angular-multi-step-form/blob/master/docs/migrating-to-1.1.x.md');
-                    throw new Error('Step container not found');
-                }
                 // Add .multi-step-container class
                 element.addClass('multi-step-container');
                 // Callbacks
@@ -93,21 +84,35 @@ function multiStepContainer($animate, $q, $log, multiStepForm, FormStep, formSte
                 var onCancel = attrs.onCancel ? resolve(attrs.onCancel) : defaultResolve;
                 var onStepChange = attrs.onStepChange ? function () {
                     return scope.$eval(attrs.onStepChange);
-                } : _angular2['default'].noop;
+                } : _angular2.default.noop;
                 // Step container (populated by child post link function)
                 var stepContainer = controller.stepContainer;
                 var multiStepFormInstance = multiStepForm(scope.$eval(attrs.searchId));
-                // Initial step
-                var initialStep = scope.$eval(attrs.initialStep);
-
-                var currentLeaveAnimation = undefined,
-                    currentEnterAnimation = undefined,
-                    currentStepScope = undefined,
-                    currentStepElement = undefined,
-                    isDeferredResolved = false;
 
                 // Augment scope
                 multiStepFormInstance.augmentScope(scope);
+
+                // Controller
+                if (attrs.controller) {
+                    var customController = $controller(attrs.controller, {
+                        $scope: scope,
+                        $element: element,
+                        multiStepFormInstance: multiStepFormInstance
+                    });
+                    // controllerAs
+                    if (attrs.controllerAs) {
+                        scope[attrs.controllerAs] = customController;
+                    }
+                }
+
+                // Initial step
+                var initialStep = scope.$eval(attrs.initialStep);
+
+                var currentLeaveAnimation = void 0,
+                    currentEnterAnimation = void 0,
+                    currentStepScope = void 0,
+                    currentStepElement = void 0,
+                    isDeferredResolved = false;
 
                 // Resolve any outstanding promises on destroy
                 scope.$on('$destroy', function () {
@@ -121,7 +126,7 @@ function multiStepContainer($animate, $q, $log, multiStepForm, FormStep, formSte
                 multiStepFormInstance.start(scope.formSteps).then(onFinish, onCancel, function (data) {
                     var step = data.newStep;
                     var previousStep = data.oldStep;
-                    var direction = _angular2['default'].isDefined(previousStep) ? step < previousStep ? 'step-backward' : 'step-forward' : 'step-initial';
+                    var direction = _angular2.default.isDefined(previousStep) ? step < previousStep ? 'step-backward' : 'step-forward' : 'step-initial';
 
                     var formStep = scope.formSteps[step - 1];
                     // Create new step element (promise)
@@ -180,5 +185,3 @@ function multiStepContainer($animate, $q, $log, multiStepForm, FormStep, formSte
         }
     };
 }
-multiStepContainer.$inject = ["$animate", "$q", "$log", "multiStepForm", "FormStep", "formStepElement"];
-module.exports = exports['default'];

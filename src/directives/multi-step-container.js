@@ -1,6 +1,6 @@
 import angular from 'angular';
 
-export default [ '$animate', '$q', 'multiStepForm', 'FormStep', 'formStepElement', multiStepContainer ];
+export default [ '$animate', '$q', '$controller', 'multiStepForm', 'FormStep', 'formStepElement', multiStepContainer ];
 
 /**
  * @ngdoc    directive
@@ -8,6 +8,7 @@ export default [ '$animate', '$q', 'multiStepForm', 'FormStep', 'formStepElement
  *
  * @requires $scope
  * @requires $q
+ * @requires $controller
  * @requires multiStepForm:multiStepForm
  * @requires multiStepForm:FormStep
  * @requires multiStepForm:formStepElement
@@ -15,7 +16,7 @@ export default [ '$animate', '$q', 'multiStepForm', 'FormStep', 'formStepElement
  * @scope
  * @description Multi step directive (overall container)
  */
-function multiStepContainer($animate, $q, multiStepForm, FormStep, formStepElement) {
+function multiStepContainer($animate, $q, $controller, multiStepForm, FormStep, formStepElement) {
     return {
         restrict: 'EA',
         scope: true,
@@ -77,7 +78,24 @@ function multiStepContainer($animate, $q, multiStepForm, FormStep, formStepEleme
                 // Step container (populated by child post link function)
                 const stepContainer = controller.stepContainer;
                 const multiStepFormInstance = multiStepForm(scope.$eval(attrs.searchId));
-                    // Initial step
+
+                // Augment scope
+                multiStepFormInstance.augmentScope(scope);
+
+                // Controller
+                if (attrs.controller) {
+                    const customController = $controller(attrs.controller, {
+                        $scope: scope,
+                        $element: element,
+                        multiStepFormInstance
+                    });
+                    // controllerAs
+                    if (attrs.controllerAs) {
+                        scope[attrs.controllerAs] = customController;
+                    }
+                }
+
+                // Initial step
                 const initialStep = scope.$eval(attrs.initialStep);
 
                 let currentLeaveAnimation,
@@ -85,9 +103,6 @@ function multiStepContainer($animate, $q, multiStepForm, FormStep, formStepEleme
                     currentStepScope,
                     currentStepElement,
                     isDeferredResolved = false;
-
-                // Augment scope
-                multiStepFormInstance.augmentScope(scope);
 
                 // Resolve any outstanding promises on destroy
                 scope.$on('$destroy', () => {

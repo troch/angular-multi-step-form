@@ -1,9 +1,9 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports['default'] = multiStepForm;
+exports.default = ['$q', '$location', '$rootScope', multiStepForm];
 
 /**
  * @ngdoc       function
@@ -14,9 +14,8 @@ exports['default'] = multiStepForm;
  *
  * @description A service returning an instance per multi step form.
  *              The instance of the service is injected in each step controller.
- *
- * @ngInject
  */
+
 function multiStepForm($q, $location, $rootScope) {
     function MultiFormStep(searchId) {
         var _this = this;
@@ -131,7 +130,7 @@ function multiStepForm($q, $location, $rootScope) {
          * @param {Number} step The index to start with
          */
         this.setInitialIndex = function (initialStep) {
-            var searchIndex = undefined;
+            var searchIndex = void 0;
             // Initial step in markup has the priority
             // to override any manually entered URL
             if (angular.isDefined(initialStep)) {
@@ -267,5 +266,3 @@ function multiStepForm($q, $location, $rootScope) {
         return new MultiFormStep(searchId);
     };
 }
-multiStepForm.$inject = ["$q", "$location", "$rootScope"];
-module.exports = exports['default'];
