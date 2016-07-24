@@ -79,9 +79,7 @@ describe('multiStepForm factory:', function () {
         });
 
         it('should return the list of steps', function () {
-            expect(multiStepFormInstance.getSteps().length).toEqual(5)
+            expect(multiStepFormInstance.getSteps().length).toEqual(5);
         });
     });
-
-
 });

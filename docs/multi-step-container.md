@@ -7,7 +7,8 @@
                       on-finish="finish()"
                       on-cancel="cancel()"
                       search-id="'wizard-id'"
-                      initial-step="1">
+                      initial-step="1"
+                      controller="MyCustomController">
     <step-container></step-container>
 </multi-step-container>
 ```
@@ -29,6 +30,12 @@ The expression to execute if the multi-step form is cancelled.
 
 `onStepChange`  _angular expression_
 The expression to execute on a step change.
+
+`controller`  _string_
+The name of a controller. `multiStepFormInstance` can be injected.
+
+`controllerAs` _string_
+For your custom controller.
 
 ## Class names
 

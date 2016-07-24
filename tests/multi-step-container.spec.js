@@ -1,5 +1,6 @@
 describe('multiStepContainer directive:', function() {
     beforeEach(module('multiStepForm'));
+    beforeEach(module('helpers'));
 
     var $rootScope,
         $compile,
@@ -22,6 +23,7 @@ describe('multiStepContainer directive:', function() {
         $log = _$log_;
 
         scope = $rootScope.$new();
+        scope.parentObject = {};
         scope.steps = [
             {
                 title: 'Step 1',
@@ -213,5 +215,13 @@ describe('multiStepContainer directive:', function() {
         element.scope().$nextStep();
         $rootScope.$digest();
         expect(scope.onStepChange.calls.count()).toBe(2);
+    });
+
+    it('should instantiate a custom controller', function () {
+        var element = angular.element('<multi-step-container steps="steps" controller="CustomController" />');
+        expect(function() {
+            $compile(element)(scope);
+        }).not.toThrow();
+        expect(scope.parentObject.text).toBe('hello');
     });
 });

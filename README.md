@@ -18,6 +18,7 @@ It is lightweight (6kb minified) but extremely versatile and powerful.
 ## Features
 
 - Steps are controlled views and are easily configured
+- Directive controller
 - Asynchronous loading of steps (`templateUrl` and `resolve`)
 - Forward and backward animations
 - Isolated or non isolated scopes for steps

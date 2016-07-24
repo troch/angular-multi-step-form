@@ -12,7 +12,8 @@ module.exports = function (config) {
       'dist/browser/angular-multi-step-form.js',
       // 'bower_components/angular-animate/angular-animate.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'tests/*.js'
+      'tests/helpers.js',
+      'tests/*.spec.js'
     ],
 
     frameworks: [ 'jasmine' ],
