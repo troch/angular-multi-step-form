@@ -64,7 +64,7 @@ Grab the sources with bower, npm or download from Github: [https://github.com/tr
 
 ```sh
 $ npm install --save angular-multi-step-form;
-$ bower install --savev angular-multi-step-form
+$ bower install --save angular-multi-step-form
 ```
 
 Include `multiStepForm` module in your app:
