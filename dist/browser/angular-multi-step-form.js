@@ -139,12 +139,12 @@ var angularMultiStepForm = (function (angular$1) {
                       if (currentStepScope) {
                           currentStepScope.$destroy();
                       }
-                      // Leave current step if any
-                      if (currentStepElement) {
-                          currentLeaveAnimation = $animate.leave(currentStepElement);
-                      }
                       // Enter new step when new step element is ready
                       newStepElement.then(function (step) {
+                          // Leave current step if any
+                          if (currentStepElement) {
+                              currentLeaveAnimation = $animate.leave(currentStepElement);
+                          }
                           onStepChange();
                           currentStepScope = step.scope;
                           currentStepElement = step.element;

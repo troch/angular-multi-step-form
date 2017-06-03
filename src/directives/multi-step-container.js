@@ -139,17 +139,19 @@ function multiStepContainer($animate, $q, $controller, multiStepForm, FormStep, 
                         if (currentEnterAnimation) {
                             $animate.cancel(currentEnterAnimation);
                         }
-                        // Destroy current scope
-                        if (currentStepScope) {
-                            currentStepScope.$destroy();
-                        }
-                        // Leave current step if any
-                        if (currentStepElement) {
-                            currentLeaveAnimation = $animate.leave(currentStepElement);
-                        }
                         // Enter new step when new step element is ready
                         newStepElement
                             .then(function (step) {
+
+                                // Destroy current scope
+                                if (currentStepScope) {
+                                    currentStepScope.$destroy();
+                                }
+                                // Leave current step if any
+                                if (currentStepElement) {
+                                    currentLeaveAnimation = $animate.leave(currentStepElement);
+                                }
+
                                 onStepChange();
                                 currentStepScope = step.scope;
                                 currentStepElement = step.element;
