@@ -39,13 +39,13 @@ See changelog and migration guide:
 
 ## Examples
 
-- [Getting started](http://blog.reactandbethankful.com/angular-multi-step-form/#/getting-started)
-- [Using forms](http://blog.reactandbethankful.com/angular-multi-step-form/#/using-forms)
-- [Saving data](http://blog.reactandbethankful.com/angular-multi-step-form/#/saving-data)
-- [CSS transitions](http://blog.reactandbethankful.com/angular-multi-step-form/#/css-transitions)
-- [Cancel and Finish](http://blog.reactandbethankful.com/angular-multi-step-form/#/cancel-finish)
-- [Browser navigation](http://blog.reactandbethankful.com/angular-multi-step-form/#/browser-navigation)
-- [Inside a modal](http://blog.reactandbethankful.com/angular-multi-step-form/#/inside-modal)
+- [Getting started](http://troch.github.io/angular-multi-step-form/#/getting-started)
+- [Using forms](http://troch.github.io/angular-multi-step-form/#/using-forms)
+- [Saving data](http://troch.github.io/angular-multi-step-form/#/saving-data)
+- [CSS transitions](http://troch.github.io/angular-multi-step-form/#/css-transitions)
+- [Cancel and Finish](http://troch.github.io/angular-multi-step-form/#/cancel-finish)
+- [Browser navigation](http://troch.github.io/angular-multi-step-form/#/browser-navigation?step=1)
+- [Inside a modal](http://troch.github.io/angular-multi-step-form/#/inside-modal)
 
 
 ## Docs
